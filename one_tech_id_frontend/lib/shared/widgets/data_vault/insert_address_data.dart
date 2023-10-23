@@ -4,9 +4,16 @@ import 'package:one_tech_data_control/core/data/repositories/sqflite_address_rep
 import '../text_widgets/data_text_form_field.dart';
 
 class AddressInsertData extends StatefulWidget {
-  final AddressModel addressModel;
+  AddressModel addressModel = AddressModel(
+      street: '',
+      number: '',
+      neighborhood: '',
+      city: '',
+      state: '',
+      country: '',
+      zipCode: '');
   final VoidCallback onChange;
-  const AddressInsertData(
+  AddressInsertData(
       {required this.addressModel, required this.onChange, super.key});
 
   @override

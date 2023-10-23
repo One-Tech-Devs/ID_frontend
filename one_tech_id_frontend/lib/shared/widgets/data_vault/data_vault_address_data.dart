@@ -15,16 +15,6 @@ class DataVaultAddress extends StatefulWidget {
 
 class _DataVaultAddressState extends State<DataVaultAddress> {
   final pageViewController = PageController();
-  TextEditingController zipCodeController = TextEditingController();
-  TextEditingController streetController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
-  TextEditingController neighborhoodController = TextEditingController();
-  TextEditingController cityController = TextEditingController();
-  TextEditingController stateController = TextEditingController();
-  TextEditingController countryController = TextEditingController();
-
-  static const iUnselectedconColor = Color.fromARGB(255, 0, 64, 149);
-  static const iconSelectedColor = Color.fromARGB(255, 255, 87, 23);
 
   @override
   void dispose() {
@@ -45,14 +35,13 @@ class _DataVaultAddressState extends State<DataVaultAddress> {
             if (snapshot.data!.length == 0) {
               return AddressInsertData(
                   addressModel: AddressModel(
-                    street: "",
-                    number: "",
-                    neighborhood: "",
-                    city: "",
-                    state: "",
-                    country: "",
-                    zipCode: "",
-                  ),
+                      street: '',
+                      number: '',
+                      neighborhood: '',
+                      city: '',
+                      state: '',
+                      country: '',
+                      zipCode: ''),
                   onChange: () {
                     setState(() {});
                   });
@@ -60,8 +49,11 @@ class _DataVaultAddressState extends State<DataVaultAddress> {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) => AddressTile(
-                  title: snapshot.data![index].city,
-                  subTitle: snapshot.data![index].country),
+                addressModel: snapshot.data![0],
+                onChange: () {
+                  setState(() {});
+                },
+              ),
             );
           }),
     );
