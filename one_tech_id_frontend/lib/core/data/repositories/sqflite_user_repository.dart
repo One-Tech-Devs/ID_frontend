@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/user_model.dart';
 import 'package:one_tech_data_control/providers/db_provider.dart';
-
 import '../../../constants/db_table_const.dart';
 
 class SQFLiteRepository extends ChangeNotifier {
