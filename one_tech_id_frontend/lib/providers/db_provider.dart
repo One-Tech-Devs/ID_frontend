@@ -31,16 +31,28 @@ class DBProvider {
       dbPath,
       version: 1,
       onCreate: (db, version) async {
-        await db.execute("CREATE TABLE ${USER_DATA_TABLE}("
-            "${USER_FIELD_ID} INTEGER PRIMARY KEY,"
-            "${USER_FIELD_NAME} VARCHAR(100),"
-            "${USER_FIELD_SOCIAL_NAME} VARCHAR(100),"
-            "${USER_FIELD_CPF} INTEGER,"
-            "${USER_FIELD_RG} INTEGER,"
-            "${USER_FIELD_ADDRESS} VARCHAR(200),"
-            "${USER_FIELD_EMAIL} VARCHAR(120),"
-            "${USER_FIELD_PHONE} INTEGER)");
+        await db.execute(_user);
+        await db.execute(_address);
       },
     );
   }
+
+  String get _user => "CREATE TABLE ${USER_DATA_TABLE}("
+      "${USER_FIELD_ID} INTEGER PRIMARY KEY,"
+      "${USER_FIELD_NAME} VARCHAR(100),"
+      "${USER_FIELD_SOCIAL_NAME} VARCHAR(10),"
+      "${USER_FIELD_EMAIL} VARCHAR(100),"
+      "${USER_FIELD_PHONE} VARCHAR(200),"
+      "${USER_FIELD_PIS} VARCHAR(200),"
+      "${USER_FIELD_ADDRESS} VARCHAR(120))";
+
+  String get _address => "CREATE TABLE ${ADDRESS_DATA_TABLE}("
+      "${ADDRESS_FIELD_ID} INTEGER PRIMARY KEY,"
+      "${ADDRESS_FIELD_STREET} VARCHAR(100),"
+      "${ADDRESS_FIELD_NUMBER} VARCHAR(10),"
+      "${ADDRESS_FIELD_NEIGHBORHOOD} VARCHAR(100),"
+      "${ADDRESS_FIELD_CITY} VARCHAR(200),"
+      "${ADDRESS_FIELD_STATE} VARCHAR(200),"
+      "${ADDRESS_FIELD_COUNTRY} VARCHAR(120),"
+      "${ADDRESS_FIELD_ZIP} VARCHAR(15))";
 }

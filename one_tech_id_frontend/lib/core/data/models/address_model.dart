@@ -9,24 +9,17 @@ class AddressModel {
   String state = '';
   String country = '';
   String zipCode = '';
-  String ibge = '';
-  String gia = '';
-  String ddd = '';
-  String siafi = '';
 
-  AddressModel(
-      {this.id,
-      required this.street,
-      required this.number,
-      required this.neighborhood,
-      required this.city,
-      required this.state,
-      required this.country,
-      required this.zipCode,
-      required this.ddd,
-      required this.gia,
-      required this.ibge,
-      required this.siafi});
+  AddressModel({
+    this.id,
+    required this.street,
+    required this.number,
+    required this.neighborhood,
+    required this.city,
+    required this.state,
+    required this.country,
+    required this.zipCode,
+  });
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {
@@ -37,10 +30,6 @@ class AddressModel {
       ADDRESS_FIELD_STATE: state,
       ADDRESS_FIELD_COUNTRY: country,
       ADDRESS_FIELD_ZIP: zipCode,
-      ADDRESS_FIELD_DDD: ddd,
-      ADDRESS_FIELD_GIA: gia,
-      ADDRESS_FIELD_IBGE: ibge,
-      ADDRESS_FIELD_SIAFI: siafi,
     };
 
     if (id != null) {
@@ -59,9 +48,5 @@ class AddressModel {
     state = json[ADDRESS_FIELD_STATE] ?? '';
     country = json[ADDRESS_FIELD_COUNTRY] ?? '';
     zipCode = json[ADDRESS_FIELD_ZIP] ?? '';
-    ddd = json[ADDRESS_FIELD_DDD] ?? '';
-    gia = json[ADDRESS_FIELD_GIA] ?? '';
-    ibge = json[ADDRESS_FIELD_IBGE] ?? '';
-    siafi = json[ADDRESS_FIELD_SIAFI] ?? '';
   }
 }

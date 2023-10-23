@@ -1,13 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import '../../../constants/db_table_const.dart';
-import '../../../providers/db_address_provider.dart';
+import '../../../providers/db_provider.dart';
 import '../models/address_model.dart';
 
 class SQFLiteAddressRepository extends ChangeNotifier {
   static Future<void> add(AddressModel addressModel) async {
-    DBAddressProvider dbProvider = DBAddressProvider();
+    DBProvider dbProvider = DBProvider();
 
     var db = await dbProvider.db;
     await db.insert(ADDRESS_DATA_TABLE, addressModel.toJson());
@@ -15,7 +14,7 @@ class SQFLiteAddressRepository extends ChangeNotifier {
   }
 
   static Future<void> update(AddressModel addressModel) async {
-    DBAddressProvider dbProvider = DBAddressProvider();
+    DBProvider dbProvider = DBProvider();
     var db = await dbProvider.db;
 
     await db.update(ADDRESS_DATA_TABLE, addressModel.toJson(),
@@ -23,7 +22,7 @@ class SQFLiteAddressRepository extends ChangeNotifier {
   }
 
   static Future<void> delete(AddressModel addressModel) async {
-    DBAddressProvider dbProvider = DBAddressProvider();
+    DBProvider dbProvider = DBProvider();
 
     var db = await dbProvider.db;
     await db.delete(USER_DATA_TABLE,
@@ -31,7 +30,7 @@ class SQFLiteAddressRepository extends ChangeNotifier {
   }
 
   static Future<List<AddressModel>> getAll() async {
-    DBAddressProvider dbProvider = DBAddressProvider();
+    DBProvider dbProvider = DBProvider();
 
     var db = await dbProvider.db;
 
@@ -44,7 +43,7 @@ class SQFLiteAddressRepository extends ChangeNotifier {
   }
 
   static Future<AddressModel?> get(int id) async {
-    DBAddressProvider dbProvider = DBAddressProvider();
+    DBProvider dbProvider = DBProvider();
 
     var db = await dbProvider.db;
     var rows = await db.query(USER_DATA_TABLE,

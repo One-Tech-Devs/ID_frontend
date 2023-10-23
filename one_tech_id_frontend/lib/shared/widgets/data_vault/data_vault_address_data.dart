@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/address_model.dart';
 import 'package:one_tech_data_control/core/data/repositories/sqflite_address_repository.dart';
-import 'package:one_tech_data_control/core/data/repositories/zip_code_repository.dart';
-import 'package:one_tech_data_control/shared/widgets/list_view/data_vault/list_view_address.dart';
+import 'package:one_tech_data_control/shared/widgets/data_vault/insert_address_data.dart';
+
+import '../list_tile/list_tile_zip_code.dart';
 
 class DataVaultAddress extends StatefulWidget {
   bool edit = false;
@@ -44,28 +45,23 @@ class _DataVaultAddressState extends State<DataVaultAddress> {
             if (snapshot.data!.length == 0) {
               return AddressInsertData(
                   addressModel: AddressModel(
-                      street: "",
-                      number: "",
-                      neighborhood: "",
-                      city: "",
-                      state: "",
-                      country: "",
-                      zipCode: "",
-                      ddd: "",
-                      gia: "",
-                      ibge: "",
-                      siafi: ""),
+                    street: "",
+                    number: "",
+                    neighborhood: "",
+                    city: "",
+                    state: "",
+                    country: "",
+                    zipCode: "",
+                  ),
                   onChange: () {
                     setState(() {});
                   });
             }
             return ListView.builder(
               itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return const Center(
-                  child: LinearProgressIndicator(),
-                );
-              },
+              itemBuilder: (context, index) => AddressTile(
+                  title: snapshot.data![index].city,
+                  subTitle: snapshot.data![index].country),
             );
           }),
     );
