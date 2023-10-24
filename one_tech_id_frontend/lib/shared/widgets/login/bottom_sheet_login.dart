@@ -63,10 +63,7 @@ class _BottomSheetLoginState extends State<BottomSheetLogin> {
               onPressed: () async {
                 if (widget._userController.text == "hackweek@devs.com" &&
                     widget._passwordController.text == "+Devs2023") {
-                  UserModel? userModel = await SQFLiteUserRepository.get(1);
                   setState(() {
-                    BlocProvider.of<UserBloc>(context).setUser(userModel!);
-
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const LandingScreen(),
                     ));

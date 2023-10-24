@@ -68,13 +68,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: FilledButton(
                         onPressed: () async {
                           final authenticate = await LocalAuth.authenticate();
-                          UserModel? userModel =
-                              await SQFLiteUserRepository.get(1);
 
                           setState(() {
                             authenticated = authenticate;
-                            BlocProvider.of<UserBloc>(context)
-                                .setUser(userModel!);
                           });
 
                           if (authenticated) {
