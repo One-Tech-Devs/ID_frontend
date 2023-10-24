@@ -1,4 +1,4 @@
-import 'package:bloc_provider/bloc_provider.dart';
+import "package:bloc_provider/bloc_provider.dart";
 import 'package:one_tech_data_control/core/data/repositories/sqflite_mock_data/sqflite_user_repository.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -8,6 +8,8 @@ class UserBloc extends Bloc {
   UserModel? _currentUser;
 
   ReplaySubject<UserModel> userModelStream = ReplaySubject<UserModel>();
+
+  UserBloc();
 
   void setUser(UserModel userModel) async {
     _currentUser = await SQFLiteUserRepository.get(1);
@@ -22,5 +24,6 @@ class UserBloc extends Bloc {
   @override
   void dispose() {
     // TODO: implement dispose
+    userModelStream.close();
   }
 }

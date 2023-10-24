@@ -41,7 +41,6 @@ dependencies:
   sqflite: ^2.3.0
   path: ^1.8.3
   dynamic_color: ^1.6.8
-  bloc_provider: ^1.0.0
   rxdart: ^0.27.7
   firebase_database: ^10.2.7
   firebase_remote_config: ^4.2.7
@@ -49,6 +48,7 @@ dependencies:
   firebase_core: ^2.17.0
   firebase_auth: ^4.10.1
   cloud_firestore: ^4.12.0
+  bloc_provider: ^1.0.0
 
 dev_dependencies:
   flutter_test:

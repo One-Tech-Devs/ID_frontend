@@ -1,8 +1,9 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../constants/db_table_const.dart';
 import '../../../models/transaction_model.dart';
+
+typedef NotifyMockRepositoryOnGetUpdatedList = void Function(
+    List<TransactionModel>);
 
 class NotifyMockRepository {
   static Future<TransactionModel> addTransaction(
@@ -23,5 +24,24 @@ class NotifyMockRepository {
 
     return TransactionModel.fromJson(
         documentSnapshot.data as Map<String, dynamic>, documentSnapshot.id);
+  }
+
+  static void listenList(
+      NotifyMockRepositoryOnGetUpdatedList onGetUpdatedList) {
+    FirebaseFirestore.instance
+        .collection(REQUESTED_DATA)
+        .snapshots()
+        .listen((event) {
+      List<TransactionModel> list = [];
+
+      try {
+        event.docs.forEach((element) {
+          list.add(TransactionModel.fromJson(
+              element.data() as Map<String, dynamic>, element.id));
+        });
+      } finally {
+        onGetUpdatedList(list);
+      }
+    });
   }
 }

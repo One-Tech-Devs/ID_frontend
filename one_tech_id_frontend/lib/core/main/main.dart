@@ -2,6 +2,7 @@ import 'package:bloc_provider/bloc_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'package:one_tech_data_control/blocs/notify_bloc.dart';
 import '../../blocs/user_bloc.dart';
 import '../../firebase_options.dart';
 import '../../screens/access/login_screen.dart';
@@ -26,10 +27,13 @@ class IDApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<UserBloc>(
       creator: (context, bag) => UserBloc(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(useMaterial3: true),
-        home: const LoginScreen(),
+      child: BlocProvider<NotifyBloc>(
+        creator: (context, bag) => NotifyBloc(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(useMaterial3: true),
+          home: const LoginScreen(),
+        ),
       ),
     );
   }

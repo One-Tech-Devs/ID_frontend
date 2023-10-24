@@ -19,7 +19,7 @@ class HelloStreamWidget extends StatelessWidget {
             if ((!snapshot.hasData) || (snapshot.data == null)) {
               return const Text(
                 "Seja bem vindo!",
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 24,
                     fontFamily: "Roboto",
                     color: iconSelectedColor),
