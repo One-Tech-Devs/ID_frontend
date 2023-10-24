@@ -23,7 +23,6 @@ class _PendingHistoryState extends State<PendingHistory> {
             child: FilterDropButton(),
           ),
           StreamBuilder(
-            stream: BlocProvider.of<UserBloc>(context).userStream,
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Padding(

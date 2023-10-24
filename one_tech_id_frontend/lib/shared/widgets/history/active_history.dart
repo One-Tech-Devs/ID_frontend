@@ -22,7 +22,6 @@ class _ActiveHistoryState extends State<ActiveHistory> {
             child: FilterDropButton(),
           ),
           StreamBuilder(
-            stream: BlocProvider.of<UserBloc>(context).userStream,
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Padding(
