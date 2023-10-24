@@ -14,8 +14,8 @@ class _ActiveHistoryState extends State<ActiveHistory> {
     return StreamBuilder(
       builder: (context, constraints) {
         if (widget.listRequests.isEmpty) {
-          return Padding(
-            padding: const EdgeInsets.all(16),
+          return const Padding(
+            padding: EdgeInsets.all(16),
             child: Center(
               child: Text(
                 "Nenhum dado seu está sendo compartilhado. \n"

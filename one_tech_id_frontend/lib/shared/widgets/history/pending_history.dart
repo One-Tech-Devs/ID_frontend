@@ -15,8 +15,8 @@ class _PendingHistoryState extends State<PendingHistory> {
     return StreamBuilder(
       builder: (context, constraints) {
         if (widget.listRequests.isEmpty) {
-          return Padding(
-            padding: const EdgeInsets.all(16),
+          return const Padding(
+            padding: EdgeInsets.all(16),
             child: Center(
               child: Text(
                 "Você não possui nenhuma solicitação pendente no momento. \nNão se preocupe, nós notificaremos quando aparecerem novas solicitações.",

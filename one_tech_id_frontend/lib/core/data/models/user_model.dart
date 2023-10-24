@@ -6,13 +6,13 @@ class UserModel {
   String socialName;
   String address;
   String email;
-  int phone;
+  String phone;
   String cpf;
   String rg;
   String pis;
 
   UserModel(
-      {required this.id,
+      {this.id,
       required this.name,
       required this.socialName,
       required this.address,

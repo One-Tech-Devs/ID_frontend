@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/address_model.dart';
 import 'package:one_tech_data_control/core/data/repositories/sqflite_address_repository.dart';
-import 'package:one_tech_data_control/shared/widgets/data_vault/insert_address_data.dart';
-
-import '../list_tile/list_tile_zip_code.dart';
+import 'package:one_tech_data_control/shared/widgets/data_vault/insert_list_widget/insert_address_data.dart';
 
 class DataVaultAddress extends StatefulWidget {
-  bool edit = false;
-  DataVaultAddress({super.key});
+  const DataVaultAddress({super.key});
 
   @override
   State<DataVaultAddress> createState() => _DataVaultAddressState();
@@ -30,9 +27,9 @@ class _DataVaultAddressState extends State<DataVaultAddress> {
           future: SQFLiteAddressRepository.getAll(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return Center(child: LinearProgressIndicator());
+              return const Center(child: LinearProgressIndicator());
             }
-            if (snapshot.data!.length == 0) {
+            if (snapshot.data!.isEmpty) {
               return AddressInsertData(
                   addressModel: AddressModel(
                       street: '',

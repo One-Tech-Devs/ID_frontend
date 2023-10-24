@@ -7,7 +7,7 @@ class TextNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 14, fontFamily: "Roboto", fontWeight: FontWeight.w500));
   }
 }

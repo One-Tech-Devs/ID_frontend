@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/address_model.dart';
-
-import '../data_vault/insert_address_data.dart';
 import 'list_tile_data_vault.dart';
 
 class AddressTile extends StatelessWidget {
@@ -44,7 +42,7 @@ class AddressTile extends StatelessWidget {
                 title: "País",
                 subTitle: addressModel.country,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
               Card(
@@ -52,8 +50,8 @@ class AddressTile extends StatelessWidget {
                   child: SizedBox(
                       height: 68,
                       width: 68,
-                      child:
-                          IconButton(onPressed: () {}, icon: Icon(Icons.edit))))
+                      child: IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.edit))))
             ],
           ),
         ],

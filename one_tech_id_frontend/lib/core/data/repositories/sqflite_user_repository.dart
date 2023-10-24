@@ -1,14 +1,16 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/user_model.dart';
 import 'package:one_tech_data_control/providers/db_provider.dart';
 import '../../../constants/db_table_const.dart';
 
-class SQFLiteRepository extends ChangeNotifier {
-  Future<void> add(UserModel userModel) async {
+class SQFLiteUserRepository extends ChangeNotifier {
+  static Future<void> add(UserModel userModel) async {
     DBProvider dbProvider = DBProvider();
 
     var db = await dbProvider.db;
     await db.insert(USER_DATA_TABLE, userModel.toJson());
+    log("db.insert");
   }
 
   static Future<void> update(UserModel userModel) async {

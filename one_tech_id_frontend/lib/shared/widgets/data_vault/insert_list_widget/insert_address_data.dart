@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/address_model.dart';
 import 'package:one_tech_data_control/core/data/repositories/sqflite_address_repository.dart';
-import '../list_tile/list_tile_data_vault.dart';
-import '../text_widgets/data_text_form_field.dart';
+import '../../list_tile/list_tile_data_vault.dart';
+import '../../text_widgets/data_text_form_field.dart';
 
+// ignore: must_be_immutable
 class AddressInsertData extends StatefulWidget {
   AddressModel addressModel = AddressModel(
       street: '',
@@ -113,41 +114,37 @@ class _AddressInsertDataState extends State<AddressInsertData> {
                     text: "País")
                 : TileDataVault(
                     title: "País", subTitle: widget.addressModel.country),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Card(
-                color: Color.fromARGB(255, 249, 250, 255),
-                child: SizedBox(
-                  height: 68,
-                  child: IconButton(
-                      onPressed: () async {
-                        if (formKey.currentState!.validate()) {
-                          widget.addressModel.zipCode = zipCodeController.text;
-                          widget.addressModel.street = streetController.text;
-                          widget.addressModel.number = numberController.text;
-                          widget.addressModel.neighborhood =
-                              neighborhoodController.text;
-                          widget.addressModel.city = cityController.text;
-                          widget.addressModel.state = stateController.text;
-                          widget.addressModel.country = countryController.text;
+            Card(
+              child: SizedBox(
+                height: 68,
+                child: IconButton(
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        widget.addressModel.zipCode = zipCodeController.text;
+                        widget.addressModel.street = streetController.text;
+                        widget.addressModel.number = numberController.text;
+                        widget.addressModel.neighborhood =
+                            neighborhoodController.text;
+                        widget.addressModel.city = cityController.text;
+                        widget.addressModel.state = stateController.text;
+                        widget.addressModel.country = countryController.text;
 
-                          if (widget.addressModel.id == null) {
-                            await SQFLiteAddressRepository.add(
-                                widget.addressModel);
-                          } else {
-                            await SQFLiteAddressRepository.update(
-                                widget.addressModel);
-                          }
-                          widget.onChange();
-
-                          onEdit = !onEdit;
+                        if (widget.addressModel.id == null) {
+                          await SQFLiteAddressRepository.add(
+                              widget.addressModel);
+                        } else {
+                          await SQFLiteAddressRepository.update(
+                              widget.addressModel);
                         }
-                      },
-                      icon: Icon(
-                        onEdit ? Icons.save : Icons.edit,
-                        color: iconSelectedColor,
-                      )),
-                ),
+                        widget.onChange();
+
+                        onEdit = !onEdit;
+                      }
+                    },
+                    icon: Icon(
+                      onEdit ? Icons.save : Icons.edit,
+                      color: iconSelectedColor,
+                    )),
               ),
             )
           ],

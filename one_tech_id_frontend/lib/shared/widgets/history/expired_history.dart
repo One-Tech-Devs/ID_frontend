@@ -14,8 +14,8 @@ class _ExpiredHistoryState extends State<ExpiredHistory> {
     return StreamBuilder(
       builder: (context, constraints) {
         if (widget.listRequests.isEmpty) {
-          return Padding(
-            padding: const EdgeInsets.all(16),
+          return const Padding(
+            padding: EdgeInsets.all(16),
             child: Center(
               child: Text(
                 "Você ainda não possui compartilhamentos expirados. \n"
