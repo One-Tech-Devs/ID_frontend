@@ -1,9 +1,4 @@
-import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:one_tech_data_control/core/data/repositories/sqflite_mock_data/sqflite_user_repository.dart';
-
-import '../../../blocs/user_bloc.dart';
-import '../../../core/data/models/user_model.dart';
 import '../../../screens/landing_screen.dart';
 
 class BottomSheetLogin extends StatefulWidget {

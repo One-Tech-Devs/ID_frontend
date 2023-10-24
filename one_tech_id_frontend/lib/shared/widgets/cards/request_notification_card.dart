@@ -46,12 +46,40 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                   checkBoxValue = value!;
                 });
               }),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(onPressed: () {}, child: Text("Liberar")),
-              ElevatedButton(onPressed: () {}, child: Text("Recusar"))
-            ],
+          Padding(
+            padding: const EdgeInsets.only(top: 16, right: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                    style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            Color.fromARGB(255, 0, 64, 149))),
+                    onPressed: () {},
+                    child: const Text(
+                      "Liberar",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Roboto",
+                          color: Colors.white),
+                    )),
+                const SizedBox(
+                  width: 12,
+                ),
+                ElevatedButton(
+                    style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            Color.fromARGB(255, 173, 51, 0))),
+                    onPressed: () {},
+                    child: const Text(
+                      "Recusar",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Roboto",
+                          color: Colors.white),
+                    ))
+              ],
+            ),
           )
         ]),
       ),
