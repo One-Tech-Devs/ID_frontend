@@ -33,6 +33,7 @@ class DBProvider {
       onCreate: (db, version) async {
         await db.execute(_user);
         await db.execute(_address);
+        await db.execute(_requests);
       },
     );
   }
@@ -57,4 +58,12 @@ class DBProvider {
       "${ADDRESS_FIELD_STATE} VARCHAR(200),"
       "${ADDRESS_FIELD_COUNTRY} VARCHAR(120),"
       "${ADDRESS_FIELD_ZIP} VARCHAR(15))";
+
+  String get _requests => "CREATE TABLE ${REQUEST_DATA_TABLE}("
+      "${REQUEST_FIELD_ID} INTEGER PRIMARY KEY,"
+      "${REQUEST_FIELD_REQUESTER} VARCHAR(150),"
+      "${REQUEST_FIELD_REQUEST_DATA} VARCHAR(10),"
+      "${REQUEST_FIELD_REQUEST_DATE} VARCHAR(10),"
+      "${REQUEST_FIELD_REQUESTE_UNTIL} VARCHAR(10),"
+      "${REQUEST_FIELD_STATUS} VARCHAR(20))";
 }
