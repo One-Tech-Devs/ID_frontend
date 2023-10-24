@@ -17,18 +17,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: []),
       body: PageView(
         controller: pageViewController,
-        children: [
-          PendingHistory(listRequests: []),
-          ActiveHistory(
-            listRequests: [],
-          ),
-          ExpiredHistory(
-            listRequests: [],
-          )
-        ],
+        children: const [PendingHistory(), ActiveHistory(), ExpiredHistory()],
       ),
       bottomNavigationBar:
           NavBarHistory(pageViewController: pageViewController),

@@ -1,8 +1,11 @@
+import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
+import '../../../blocs/user_bloc.dart';
+import '../filter_button/dropdown_filter.dart';
+import '../text_widgets/no_active_request_text.dart';
 
 class ActiveHistory extends StatefulWidget {
-  final List<String> listRequests;
-  const ActiveHistory({required this.listRequests, super.key});
+  const ActiveHistory({super.key});
 
   @override
   State<ActiveHistory> createState() => _ActiveHistoryState();
@@ -11,27 +14,32 @@ class ActiveHistory extends StatefulWidget {
 class _ActiveHistoryState extends State<ActiveHistory> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      builder: (context, constraints) {
-        if (widget.listRequests.isEmpty) {
-          return const Padding(
-            padding: EdgeInsets.all(16),
-            child: Center(
-              child: Text(
-                "Nenhum dado seu está sendo compartilhado. \n"
-                "Você pode acessar a aba expirados aqui no histórico para verificar quais foram os seus ultimos dados compartilhados",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 87, 23),
-                  fontSize: 18,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          );
-        }
-        return ListView();
-      },
+    return Scaffold(
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(bottom: 12, left: 16, right: 16),
+            child: FilterDropButton(),
+          ),
+          StreamBuilder(
+            stream: BlocProvider.of<UserBloc>(context).userStream,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Center(
+                    child: NoActiveRequest(
+                      message: "Nenhum dado seu está sendo compartilhado. \n"
+                          "Você pode acessar a aba expirados aqui no histórico para verificar quais foram os seus ultimos dados compartilhados",
+                    ),
+                  ),
+                );
+              }
+              return ListView();
+            },
+          ),
+        ],
+      ),
     );
   }
 }

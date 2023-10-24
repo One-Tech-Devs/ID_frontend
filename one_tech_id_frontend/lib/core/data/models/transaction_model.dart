@@ -9,7 +9,12 @@ class TransactionModel {
   String requestStatus = '';
 
   TransactionModel(
-      {required this.id, required this.requestData, required this.requester});
+      {required this.id,
+      required this.requestData,
+      required this.requester,
+      required this.requestDate,
+      required this.requestUntil,
+      required this.requestStatus});
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {
