@@ -1,7 +1,11 @@
+import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/screens/landing_screen.dart';
 import 'package:one_tech_data_control/shared/widgets/login/bottom_sheet_login.dart';
 
+import '../../blocs/user_bloc.dart';
+import '../../core/data/models/user_model.dart';
+import '../../core/data/repositories/sqflite_mock_data/sqflite_user_repository.dart';
 import '../../core/services/local_auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -64,9 +68,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: FilledButton(
                         onPressed: () async {
                           final authenticate = await LocalAuth.authenticate();
+                          UserModel? userModel =
+                              await SQFLiteUserRepository.get(1);
 
                           setState(() {
                             authenticated = authenticate;
+                            BlocProvider.of<UserBloc>(context)
+                                .setUser(userModel!);
                           });
 
                           if (authenticated) {
