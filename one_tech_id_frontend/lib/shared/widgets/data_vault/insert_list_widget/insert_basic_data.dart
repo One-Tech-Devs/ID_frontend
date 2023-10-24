@@ -1,8 +1,10 @@
+import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/user_model.dart';
 
 import 'package:one_tech_data_control/shared/widgets/list_tile/list_tile_data_vault.dart';
 
+import '../../../../blocs/user_bloc.dart';
 import '../../../../core/data/repositories/sqflite_mock_data/sqflite_user_repository.dart';
 import '../../text_widgets/data_text_form_field.dart';
 
@@ -111,6 +113,8 @@ class _BasicInsertDataState extends State<BasicInsertData> {
                             }
                             widget.onChange();
                             onEdit = !onEdit;
+                            BlocProvider.of<UserBloc>(context)
+                                .setUser(widget.userModel);
                           },
                           icon: Icon(Icons.save, color: iconSelectedColor),
                         )
