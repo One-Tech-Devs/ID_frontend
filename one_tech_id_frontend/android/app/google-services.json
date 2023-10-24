@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "511272600016",
+    "project_id": "one-tech-id",
+    "storage_bucket": "one-tech-id.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511272600016:android:06a4a75df120064cce79d5",
+        "android_client_info": {
+          "package_name": "com.example.one_tech_data_control"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQet290y-cEd7hhol2eWc6E6wSbJ8EZrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

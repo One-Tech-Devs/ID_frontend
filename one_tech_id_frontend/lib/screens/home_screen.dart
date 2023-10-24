@@ -10,13 +10,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: const Text(
-        "Nenhuma solicitação encontrada",
-        style: TextStyle(
-            fontSize: 22, fontFamily: "Roboto", fontWeight: FontWeight.w600),
-      )),
+    return const Scaffold(
+      body: Column(
+        children: [
+          Card(
+            child: ListTile(
+              title: Text("Olá, user"),
+            ),
+          ),
+          Center(
+              child: Text(
+            "Nenhuma solicitação encontrada",
+            style: TextStyle(
+                fontSize: 22,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w600),
+          )),
+        ],
+      ),
     );
   }
 }
