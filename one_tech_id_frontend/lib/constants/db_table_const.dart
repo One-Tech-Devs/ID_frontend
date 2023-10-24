@@ -39,3 +39,8 @@ const String REQUEST_FIELD_STATUS = "request_status";
 //All Firebase related consts
 
 const String REQUEST_COLLECTION = "requeste_data";
+const String REQUESTER = "requester";
+const String REQUESTED_DATA = "requested_data";
+const String REQUESTED_DATE = "requested_date";
+const String REQUESTED_UNTIL = "requested_until";
+const String REQUEST_STATUS = "request_status";
