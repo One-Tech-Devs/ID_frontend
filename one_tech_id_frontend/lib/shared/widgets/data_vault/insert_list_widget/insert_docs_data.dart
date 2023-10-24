@@ -74,28 +74,39 @@ class _DocsInsertDataState extends State<DocsInsertData> {
                 )
               : TileDataVault(title: "PIS", subTitle: widget.userModel.pis),
           Card(
-            child: SizedBox(
-                height: 68,
-                child: IconButton(
-                  onPressed: () async {
-                    if (formKey.currentState!.validate()) {
-                      widget.userModel.cpf = cpfController.text;
-                      widget.userModel.rg = rgController.text;
-                      widget.userModel.pis = pisController.text;
+              child: SizedBox(
+            height: 68,
+            child: onEdit
+                ? IconButton(
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        widget.userModel.cpf = cpfController.text;
+                        widget.userModel.rg = rgController.text;
+                        widget.userModel.pis = pisController.text;
 
-                      if (widget.userModel.id == null) {
-                        await SQFLiteUserRepository.add(widget.userModel);
-                      } else {
-                        await SQFLiteUserRepository.update(widget.userModel);
+                        if (widget.userModel.id == null) {
+                          await SQFLiteUserRepository.add(widget.userModel);
+                        } else {
+                          await SQFLiteUserRepository.update(widget.userModel);
+                        }
+                        widget.onChange();
+                        onEdit = !onEdit;
                       }
-                      widget.onChange();
-                      onEdit = !onEdit;
-                    }
-                  },
-                  icon: Icon(onEdit ? Icons.save : Icons.edit,
-                      color: iconSelectedColor),
-                )),
-          )
+                    },
+                    icon: Icon(Icons.save, color: iconSelectedColor),
+                  )
+                : IconButton(
+                    onPressed: () {
+                      setState(() {
+                        widget.onChange();
+                        onEdit = !onEdit;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.edit,
+                      color: iconSelectedColor,
+                    )),
+          ))
         ]),
       ),
     );

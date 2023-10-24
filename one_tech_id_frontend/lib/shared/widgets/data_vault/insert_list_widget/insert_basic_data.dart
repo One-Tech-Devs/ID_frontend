@@ -91,27 +91,40 @@ class _BasicInsertDataState extends State<BasicInsertData> {
               Card(
                 child: SizedBox(
                   height: 68,
-                  child: IconButton(
-                    onPressed: () async {
-                      if (formKey.currentState!.validate()) {
-                        widget.userModel.name = nameController.text;
-                        widget.userModel.socialName = socialNameController.text;
-                        widget.userModel.phone = phoneController.text;
-                        widget.userModel.email = emailController.text;
+                  child: onEdit
+                      ? IconButton(
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              widget.userModel.name = nameController.text;
+                              widget.userModel.socialName =
+                                  socialNameController.text;
+                              widget.userModel.phone = phoneController.text;
+                              widget.userModel.email = emailController.text;
 
-                        if (widget.userModel.id == null) {
-                          await SQFLiteUserRepository.add(widget.userModel);
-                        } else {
-                          await SQFLiteUserRepository.update(widget.userModel);
-                        }
-
-                        widget.onChange();
-                        onEdit = !onEdit;
-                      }
-                    },
-                    icon: Icon(onEdit ? Icons.save : Icons.edit,
-                        color: iconSelectedColor),
-                  ),
+                              if (widget.userModel.id == null) {
+                                await SQFLiteUserRepository.add(
+                                    widget.userModel);
+                              } else {
+                                await SQFLiteUserRepository.update(
+                                    widget.userModel);
+                              }
+                            }
+                            widget.onChange();
+                            onEdit = !onEdit;
+                          },
+                          icon: Icon(Icons.save, color: iconSelectedColor),
+                        )
+                      : IconButton(
+                          onPressed: () {
+                            setState(() {
+                              widget.onChange();
+                              onEdit = !onEdit;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.edit,
+                            color: iconSelectedColor,
+                          )),
                 ),
               )
             ],

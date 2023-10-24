@@ -60,12 +60,11 @@ class _BottomSheetLoginState extends State<BottomSheetLogin> {
             height: widget.constraints.maxHeight * 0.02,
           ),
           FilledButton(
-              onPressed: () {
+              onPressed: () async {
                 if (widget._userController.text == "hackweek@devs.com" &&
                     widget._passwordController.text == "+Devs2023") {
-                  setState(() async {
-                    UserModel? userModel = await SQFLiteUserRepository.get(1);
-
+                  UserModel? userModel = await SQFLiteUserRepository.get(1);
+                  setState(() {
                     BlocProvider.of<UserBloc>(context).setUser(userModel!);
 
                     Navigator.of(context).push(MaterialPageRoute(

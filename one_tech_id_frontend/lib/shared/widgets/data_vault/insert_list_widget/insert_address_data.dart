@@ -118,34 +118,48 @@ class _AddressInsertDataState extends State<AddressInsertData> {
             Card(
               child: SizedBox(
                 height: 68,
-                child: IconButton(
-                    onPressed: () async {
-                      if (formKey.currentState!.validate()) {
-                        widget.addressModel.zipCode = zipCodeController.text;
-                        widget.addressModel.street = streetController.text;
-                        widget.addressModel.number = numberController.text;
-                        widget.addressModel.neighborhood =
-                            neighborhoodController.text;
-                        widget.addressModel.city = cityController.text;
-                        widget.addressModel.state = stateController.text;
-                        widget.addressModel.country = countryController.text;
+                child: onEdit
+                    ? IconButton(
+                        onPressed: () async {
+                          if (formKey.currentState!.validate()) {
+                            widget.addressModel.zipCode =
+                                zipCodeController.text;
+                            widget.addressModel.street = streetController.text;
+                            widget.addressModel.number = numberController.text;
+                            widget.addressModel.neighborhood =
+                                neighborhoodController.text;
+                            widget.addressModel.city = cityController.text;
+                            widget.addressModel.state = stateController.text;
+                            widget.addressModel.country =
+                                countryController.text;
 
-                        if (widget.addressModel.id == null) {
-                          await SQFLiteAddressRepository.add(
-                              widget.addressModel);
-                        } else {
-                          await SQFLiteAddressRepository.update(
-                              widget.addressModel);
-                        }
-                        widget.onChange();
+                            if (widget.addressModel.id == null) {
+                              await SQFLiteAddressRepository.add(
+                                  widget.addressModel);
+                            } else {
+                              await SQFLiteAddressRepository.update(
+                                  widget.addressModel);
+                            }
+                            widget.onChange();
 
-                        onEdit = !onEdit;
-                      }
-                    },
-                    icon: Icon(
-                      onEdit ? Icons.save : Icons.edit,
-                      color: iconSelectedColor,
-                    )),
+                            onEdit = !onEdit;
+                          }
+                        },
+                        icon: Icon(
+                          Icons.save,
+                          color: iconSelectedColor,
+                        ))
+                    : IconButton(
+                        onPressed: () {
+                          setState(() {
+                            widget.onChange();
+                            onEdit = !onEdit;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.edit,
+                          color: iconSelectedColor,
+                        )),
               ),
             )
           ],
