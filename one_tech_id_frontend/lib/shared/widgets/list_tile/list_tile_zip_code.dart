@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/address_model.dart';
 
+import '../data_vault/insert_address_data.dart';
+import 'list_tile_data_vault.dart';
+
 class AddressTile extends StatelessWidget {
   final AddressModel addressModel;
   final VoidCallback onChange;
@@ -10,39 +13,50 @@ class AddressTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      child: SizedBox(
-        height: 550,
-        width: 250,
-        child: ListView(
-          children: [
-            ListTile(
-              title: Text("Rua"),
-              subtitle: Text(addressModel.street),
-            ),
-            ListTile(
-              title: Text("Número"),
-              subtitle: Text(addressModel.number),
-            ),
-            ListTile(
-              title: Text("Bairro"),
-              subtitle: Text(addressModel.neighborhood),
-            ),
-            ListTile(
-              title: Text("Cidade"),
-              subtitle: Text(addressModel.city),
-            ),
-            ListTile(
-              title: Text("Estado"),
-              subtitle: Text(addressModel.state),
-            ),
-            ListTile(
-              title: Text("País"),
-              subtitle: Text(addressModel.country),
-            ),
-          ],
-        ),
+    return SizedBox(
+      height: 580,
+      width: 250,
+      child: ListView(
+        children: [
+          Column(
+            children: [
+              TileDataVault(
+                title: "Rua",
+                subTitle: addressModel.street,
+              ),
+              TileDataVault(
+                title: "Número",
+                subTitle: addressModel.number,
+              ),
+              TileDataVault(
+                title: "Bairro",
+                subTitle: addressModel.neighborhood,
+              ),
+              TileDataVault(
+                title: "Cidade",
+                subTitle: addressModel.city,
+              ),
+              TileDataVault(
+                title: "Estado",
+                subTitle: addressModel.state,
+              ),
+              TileDataVault(
+                title: "País",
+                subTitle: addressModel.country,
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              Card(
+                  elevation: 1,
+                  child: SizedBox(
+                      height: 68,
+                      width: 68,
+                      child:
+                          IconButton(onPressed: () {}, icon: Icon(Icons.edit))))
+            ],
+          ),
+        ],
       ),
     );
   }

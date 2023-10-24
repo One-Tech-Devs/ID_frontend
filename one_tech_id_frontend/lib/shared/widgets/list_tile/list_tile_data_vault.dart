@@ -13,11 +13,14 @@ class TileDataVault extends StatefulWidget {
 class _TileDataVaultState extends State<TileDataVault> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      child: ListTile(
-        title: Text(widget.title),
-        subtitle: Text(widget.subTitle),
+    return ListTile(
+      title: Text(
+        widget.title,
+        style: TextStyle(fontSize: 18),
+      ),
+      subtitle: Text(
+        widget.subTitle,
+        style: TextStyle(fontSize: 22),
       ),
     );
   }

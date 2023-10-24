@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 class TextForm extends StatelessWidget {
   final String text;
+
   TextEditingController controller = TextEditingController();
   final TextInputType inputFormat;
 
   TextForm(
-      {required this.text, controller, required this.inputFormat, super.key});
+      {required this.text,
+      required this.controller,
+      required this.inputFormat,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +19,14 @@ class TextForm extends StatelessWidget {
       child: TextFormField(
           validator: (value) {
             return (value != null && value.contains("@"))
-                ? "Não é permitiro @"
+                ? "Não é permitido @"
                 : null;
           },
-          onSaved: (newValue) {},
           keyboardType: inputFormat,
           controller: controller,
           decoration: InputDecoration(
               fillColor: Color.fromARGB(255, 224, 204, 255),
-              hintText: text,
+              labelText: text,
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(14)),
                   borderSide: BorderSide()))),

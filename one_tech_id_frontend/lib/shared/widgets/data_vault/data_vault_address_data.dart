@@ -48,8 +48,8 @@ class _DataVaultAddressState extends State<DataVaultAddress> {
             }
             return ListView.builder(
               itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) => AddressTile(
-                addressModel: snapshot.data![0],
+              itemBuilder: (context, index) => AddressInsertData(
+                addressModel: snapshot.data![index],
                 onChange: () {
                   setState(() {});
                 },

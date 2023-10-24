@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/address_model.dart';
 import 'package:one_tech_data_control/core/data/repositories/sqflite_address_repository.dart';
+import '../list_tile/list_tile_data_vault.dart';
 import '../text_widgets/data_text_form_field.dart';
 
 class AddressInsertData extends StatefulWidget {
@@ -21,15 +22,17 @@ class AddressInsertData extends StatefulWidget {
 }
 
 class _AddressInsertDataState extends State<AddressInsertData> {
+  static const iconSelectedColor = Color.fromARGB(255, 255, 87, 23);
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  final streetController = TextEditingController();
-  final numberController = TextEditingController();
-  final neighborhoodController = TextEditingController();
-  final cityController = TextEditingController();
-  final stateController = TextEditingController();
-  final countryController = TextEditingController();
-  final zipCodeController = TextEditingController();
+  TextEditingController streetController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+  TextEditingController neighborhoodController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController zipCodeController = TextEditingController();
 
   @override
   void initState() {
@@ -47,75 +50,108 @@ class _AddressInsertDataState extends State<AddressInsertData> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: ListView(
-        children: [
-          TextForm(
-            controller: zipCodeController,
-            inputFormat: TextInputType.number,
-            text: "CEP",
-          ),
-          TextForm(
-            controller: streetController,
-            inputFormat: TextInputType.streetAddress,
-            text: "Rua",
-          ),
-          TextForm(
-            controller: numberController,
-            inputFormat: TextInputType.number,
-            text: "Número",
-          ),
-          TextForm(
-            controller: neighborhoodController,
-            inputFormat: TextInputType.streetAddress,
-            text: "Bairro",
-          ),
-          TextForm(
-            controller: cityController,
-            inputFormat: TextInputType.streetAddress,
-            text: "Cidade",
-          ),
-          TextForm(
-            controller: stateController,
-            inputFormat: TextInputType.streetAddress,
-            text: "Estado",
-          ),
-          TextForm(
-              controller: countryController,
-              inputFormat: TextInputType.streetAddress,
-              text: "País"),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 85),
-            child: SizedBox(
-              height: 35,
-              child: ElevatedButton(
-                  onPressed: () async {
-                    if (formKey.currentState!.validate()) {
-                      widget.addressModel.street = streetController.text;
-                      widget.addressModel.number = numberController.text;
-                      widget.addressModel.neighborhood =
-                          neighborhoodController.text;
-                      widget.addressModel.city = cityController.text;
-                      widget.addressModel.state = stateController.text;
-                      widget.addressModel.country = countryController.text;
+    return SizedBox(
+      height: 650,
+      width: 250,
+      child: Form(
+        key: formKey,
+        child: ListView(
+          children: [
+            onEdit
+                ? TextForm(
+                    controller: zipCodeController,
+                    inputFormat: TextInputType.number,
+                    text: "CEP",
+                  )
+                : TileDataVault(
+                    title: "CEP", subTitle: widget.addressModel.zipCode),
+            onEdit
+                ? TextForm(
+                    controller: streetController,
+                    inputFormat: TextInputType.streetAddress,
+                    text: "Rua",
+                  )
+                : TileDataVault(
+                    title: "Rua", subTitle: widget.addressModel.street),
+            onEdit
+                ? TextForm(
+                    controller: numberController,
+                    inputFormat: TextInputType.number,
+                    text: "Número",
+                  )
+                : TileDataVault(
+                    title: "Número", subTitle: widget.addressModel.number),
+            onEdit
+                ? TextForm(
+                    controller: neighborhoodController,
+                    inputFormat: TextInputType.streetAddress,
+                    text: "Bairro",
+                  )
+                : TileDataVault(
+                    title: "Bairro",
+                    subTitle: widget.addressModel.neighborhood),
+            onEdit
+                ? TextForm(
+                    controller: cityController,
+                    inputFormat: TextInputType.streetAddress,
+                    text: "Cidade",
+                  )
+                : TileDataVault(
+                    title: "Cidade", subTitle: widget.addressModel.city),
+            onEdit
+                ? TextForm(
+                    controller: stateController,
+                    inputFormat: TextInputType.streetAddress,
+                    text: "Estado",
+                  )
+                : TileDataVault(
+                    title: "Estado", subTitle: widget.addressModel.state),
+            onEdit
+                ? TextForm(
+                    controller: countryController,
+                    inputFormat: TextInputType.streetAddress,
+                    text: "País")
+                : TileDataVault(
+                    title: "País", subTitle: widget.addressModel.country),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Card(
+                color: Color.fromARGB(255, 249, 250, 255),
+                child: SizedBox(
+                  height: 68,
+                  child: IconButton(
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          widget.addressModel.zipCode = zipCodeController.text;
+                          widget.addressModel.street = streetController.text;
+                          widget.addressModel.number = numberController.text;
+                          widget.addressModel.neighborhood =
+                              neighborhoodController.text;
+                          widget.addressModel.city = cityController.text;
+                          widget.addressModel.state = stateController.text;
+                          widget.addressModel.country = countryController.text;
 
-                      if (widget.addressModel.id == null) {
-                        await SQFLiteAddressRepository.add(widget.addressModel);
-                      } else {
-                        await SQFLiteAddressRepository.update(
-                            widget.addressModel);
-                      }
-                      widget.onChange();
-                    }
-                  },
-                  child: Icon(
-                    Icons.save,
-                    color: Colors.white,
-                  )),
-            ),
-          )
-        ],
+                          if (widget.addressModel.id == null) {
+                            await SQFLiteAddressRepository.add(
+                                widget.addressModel);
+                          } else {
+                            await SQFLiteAddressRepository.update(
+                                widget.addressModel);
+                          }
+                          widget.onChange();
+
+                          onEdit = !onEdit;
+                        }
+                      },
+                      icon: Icon(
+                        onEdit ? Icons.save : Icons.edit,
+                        color: iconSelectedColor,
+                      )),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
