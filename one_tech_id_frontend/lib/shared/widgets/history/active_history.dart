@@ -1,6 +1,4 @@
-import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
-import '../../../blocs/user_bloc.dart';
 import '../filter_button/dropdown_filter.dart';
 import '../text_widgets/no_active_request_text.dart';
 

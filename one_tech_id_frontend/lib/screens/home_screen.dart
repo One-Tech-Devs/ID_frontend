@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_tech_data_control/shared/widgets/cards/request_notification_card.dart';
 import '../shared/widgets/streams_builder/hello_stream.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -28,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600),
             ),
+            RequestNotificationCard()
           ],
         ),
       ),

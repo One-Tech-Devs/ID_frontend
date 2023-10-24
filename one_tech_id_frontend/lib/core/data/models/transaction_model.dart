@@ -9,7 +9,7 @@ class TransactionModel {
   String requestStatus = '';
 
   TransactionModel(
-      {required this.id,
+      {this.id,
       required this.requestData,
       required this.requester,
       required this.requestDate,

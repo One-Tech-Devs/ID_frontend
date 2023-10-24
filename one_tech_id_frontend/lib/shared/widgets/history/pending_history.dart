@@ -1,8 +1,5 @@
-import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/shared/widgets/text_widgets/no_active_request_text.dart';
-
-import '../../../blocs/user_bloc.dart';
 import '../filter_button/dropdown_filter.dart';
 
 class PendingHistory extends StatefulWidget {
