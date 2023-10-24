@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../shared/widgets/streams_builder/hello_stream.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,22 +12,24 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Column(
-        children: [
-          Card(
-            child: ListTile(
-              title: Text("Olá, user"),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HelloStreamWidget(),
+            SizedBox(
+              height: 25,
             ),
-          ),
-          Center(
-              child: Text(
-            "Nenhuma solicitação encontrada",
-            style: TextStyle(
-                fontSize: 22,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.w600),
-          )),
-        ],
+            Text(
+              "Nenhuma solicitação encontrada",
+              style: TextStyle(
+                  fontSize: 22,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
       ),
     );
   }
