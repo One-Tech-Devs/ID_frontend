@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/address_model.dart';
-import 'package:one_tech_data_control/core/data/repositories/sqflite_address_repository.dart';
+
 import 'package:one_tech_data_control/shared/widgets/data_vault/insert_list_widget/insert_address_data.dart';
+
+import '../../../../core/data/repositories/sqflite_mock_data/sqflite_address_repository.dart';
 
 class DataVaultAddress extends StatefulWidget {
   const DataVaultAddress({super.key});
