@@ -22,7 +22,6 @@ class NotifyBloc extends Bloc {
   NotifyBloc() {
     NotifyMockRepository.listenList((p0) {
       if (p0.isNotEmpty) transactionModelStream.sink.add(p0.last);
-      print(p0.toString());
     });
   }
 
