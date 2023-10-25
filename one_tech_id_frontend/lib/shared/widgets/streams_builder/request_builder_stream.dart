@@ -1,6 +1,7 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
+import 'package:one_tech_data_control/shared/widgets/filter_button/dropdown_filter.dart';
 import 'package:one_tech_data_control/shared/widgets/text_widgets/no_active_request_text.dart';
 import '../../../blocs/notify_bloc.dart';
 import '../cards/request_notification_card.dart';
@@ -25,6 +26,10 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: FilterDropButton(),
+      ),
       body: StreamBuilder(
         stream: BlocProvider.of<NotifyBloc>(context).listTransactionModelStream,
         builder: (context, snapshot) {
