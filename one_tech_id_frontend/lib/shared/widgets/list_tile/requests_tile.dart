@@ -7,11 +7,18 @@ class RequestsTile extends StatelessWidget {
   const RequestsTile({required this.transactionModel, super.key});
 
   String status() {
-    if (transactionModel.requestStatus == "active") return "Válido até";
-    if (transactionModel.requestStatus == "pending") return "Pendente";
-    if (transactionModel.requestStatus == "expired") return "Expirou em";
-    if (transactionModel.requestStatus == "rejected")
+    if (transactionModel.requestStatus.trim().toLowerCase() == "active") {
+      return "Válido até";
+    }
+    if (transactionModel.requestStatus.trim().toLowerCase() == "pending") {
+      return "Pendente";
+    }
+    if (transactionModel.requestStatus.trim().toLowerCase() == "expired") {
+      return "Expirou em";
+    }
+    if (transactionModel.requestStatus.trim().toLowerCase() == "rejected") {
       return "Você rejeitou esta solicitação";
+    }
     return '';
   }
 

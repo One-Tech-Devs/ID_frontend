@@ -2,7 +2,6 @@ import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/blocs/notify_bloc.dart';
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
-
 import '../list_tile/check_box_listtile_notification.dart';
 
 class RequestNotificationCard extends StatefulWidget {
@@ -38,20 +37,21 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
 
           return Card(
             child: Container(
-              height: 550,
+              height: 350,
               child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: Text(
                       "${snapshot.data!.requester}, solicita o acesso a alguns dos seus dados até a data ${snapshot.data!.requestUntil}. A seguir é possível verificar os dados, selecionar e aprovar o acesso a eles.",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16,
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.w600),
                     ),
                   ),
                   Expanded(
+                    flex: 1,
                     child: ListView.builder(
                         itemCount: dataRequested.length,
                         itemBuilder: (context, index) => CheckBoxDataTile(
@@ -78,9 +78,11 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                             style: const ButtonStyle(
                                 backgroundColor: MaterialStatePropertyAll(
                                     Color.fromARGB(255, 173, 51, 0))),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                             child: const Text(
-                              "Bloquear",
+                              "Ignorar",
                               style: TextStyle(color: Colors.white),
                             ))
                       ],

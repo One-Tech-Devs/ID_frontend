@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
 import 'package:one_tech_data_control/shared/widgets/text_widgets/no_active_request_text.dart';
 import '../../../blocs/notify_bloc.dart';
+import '../cards/request_notification_card.dart';
 import '../list_tile/requests_tile.dart';
 
 class StreamRequestsBuilder extends StatefulWidget {
@@ -56,10 +57,24 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
                 height: 90,
                 child: Card(
                     elevation: 2,
-                    child: RequestsTile(transactionModel: requestList[index]))),
+                    child: InkWell(
+                        onTap: () => _dialogBuilder(context),
+                        child: RequestsTile(
+                            transactionModel: requestList[index])))),
           );
         },
       ),
     );
   }
+}
+
+Future<void> _dialogBuilder(BuildContext context) {
+  return showDialog<void>(
+    useSafeArea: true,
+    barrierDismissible: true,
+    context: context,
+    builder: (BuildContext context) {
+      return RequestNotificationCard();
+    },
+  );
 }
