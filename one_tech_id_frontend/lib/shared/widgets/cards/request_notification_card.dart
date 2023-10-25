@@ -26,11 +26,17 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
     return StreamBuilder(
         stream: BlocProvider.of<NotifyBloc>(context).transactionModelStream,
         builder: (context, snapshot) {
+          if (!snapshot.hasData)
+            return Container(
+              height: 0,
+              width: 0,
+            );
+
           return Expanded(
             child: Card(
               elevation: 1,
               child: Column(children: [
-                Text(transactionModel.requester),
+                Text(snapshot.data!.requester),
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: Text(""),

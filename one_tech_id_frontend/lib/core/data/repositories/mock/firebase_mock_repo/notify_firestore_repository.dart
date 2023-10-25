@@ -32,15 +32,25 @@ class NotifyMockRepository {
         .collection(REQUEST_COLLECTION)
         .snapshots()
         .listen((event) {
+      print("Novos dados recebidos");
+
       List<TransactionModel> list = [];
 
       try {
+        print(event.docs.length);
+
         event.docs.forEach((element) {
+          print('Indo adicionar um novo item');
+
           list.add(TransactionModel.fromJson(
               element.data() as Map<String, dynamic>, element.id));
         });
-      } finally {
+
+        print('Cheguei aqui :)');
+
         onGetUpdatedList(list);
+      } finally {
+        print('Chamando o evento...');
       }
     });
   }

@@ -1,7 +1,7 @@
 import '../../../constants/db_table_const.dart';
 
 class TransactionModel {
-  String? id;
+  String? id = '';
   String requester = '';
   String requestData = '';
   String requestDate = '';
@@ -33,11 +33,11 @@ class TransactionModel {
   }
 
   TransactionModel.fromJson(Map<String, dynamic> json, String id) {
-    id = json[REQUEST_FIELD_ID];
-    requester = json[REQUEST_FIELD_REQUESTER] ?? '';
-    requestData = json[REQUEST_FIELD_REQUEST_DATA] ?? '';
-    requestDate = json[REQUEST_FIELD_REQUEST_DATE] ?? '';
-    requestUntil = json[REQUEST_FIELD_REQUESTE_UNTIL] ?? '';
-    requestStatus = json[REQUEST_FIELD_STATUS];
+    id = json[REQUEST_FIELD_ID] ?? '';
+    requester = json[REQUESTER] ?? '';
+    requestData = json[REQUESTED_DATA] ?? '';
+    requestDate = json[REQUESTED_DATE] ?? '';
+    requestUntil = json[REQUESTED_UNTIL] ?? '';
+    requestStatus = json[REQUEST_STATUS] ?? '';
   }
 }
