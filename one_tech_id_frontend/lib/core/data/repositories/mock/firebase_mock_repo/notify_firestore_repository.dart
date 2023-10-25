@@ -29,7 +29,7 @@ class NotifyMockRepository {
   static void listenList(
       NotifyMockRepositoryOnGetUpdatedList onGetUpdatedList) {
     FirebaseFirestore.instance
-        .collection(REQUESTED_DATA)
+        .collection(REQUEST_COLLECTION)
         .snapshots()
         .listen((event) {
       List<TransactionModel> list = [];
