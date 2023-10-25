@@ -17,7 +17,7 @@ class _NavBarHistoryState extends State<NavBarHistory> {
       animation: widget.pageViewController,
       builder: (context, snapshot) {
         return BottomNavigationBar(
-            type: BottomNavigationBarType.shifting,
+            type: BottomNavigationBarType.fixed,
             currentIndex: widget.pageViewController.page?.round() ?? 0,
             onTap: (index) {
               widget.pageViewController.animateToPage(index,
@@ -68,6 +68,23 @@ class _NavBarHistoryState extends State<NavBarHistory> {
                   ),
                   icon: Text(
                     "Expirados",
+                    style: TextStyle(
+                        color: IdColors.unselectedconColor,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.w600),
+                  ),
+                  label: ""),
+              BottomNavigationBarItem(
+                  backgroundColor: IdColors.navBarColor,
+                  activeIcon: Text(
+                    "Rejeitadas",
+                    style: TextStyle(
+                        color: IdColors.selectedColor,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.w600),
+                  ),
+                  icon: Text(
+                    "Rejeitadas",
                     style: TextStyle(
                         color: IdColors.unselectedconColor,
                         fontFamily: "Roboto",

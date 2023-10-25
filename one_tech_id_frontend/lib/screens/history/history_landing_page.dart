@@ -31,7 +31,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
             status: "expired",
             onEmptyList: "Você ainda não possui compartilhamentos expirados. \n"
                 "Quando algum compartilhamento expirar, você será avisado e será possível verificar aqui neste local a lista de expirados.",
-          )
+          ),
+          StreamRequestsBuilder(
+            status: "rejected",
+            onEmptyList: "Você ainda não rejeitou nenhuma solicitação. \n"
+                "As suas solicitações rejeitas serão colocadas aqui.",
+          ),
         ],
       ),
       bottomNavigationBar:

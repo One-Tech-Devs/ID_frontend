@@ -17,7 +17,7 @@ class _NavBarDataVaultState extends State<NavBarDataVault> {
       animation: widget.pageViewController,
       builder: (context, snapshot) {
         return BottomNavigationBar(
-            type: BottomNavigationBarType.shifting,
+            type: BottomNavigationBarType.fixed,
             selectedItemColor: IdColors.selectedColor,
             unselectedItemColor: IdColors.unselectedconColor,
             currentIndex: widget.pageViewController.page?.round() ?? 0,
