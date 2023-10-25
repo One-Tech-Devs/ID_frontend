@@ -10,7 +10,8 @@ class RequestsTile extends StatelessWidget {
     if (transactionModel.requestStatus == "active") return "Válido até";
     if (transactionModel.requestStatus == "pending") return "Pendente";
     if (transactionModel.requestStatus == "expired") return "Expirou em";
-
+    if (transactionModel.requestStatus == "rejected")
+      return "Você rejeitou esta solicitação";
     return "Rejeitado";
   }
 

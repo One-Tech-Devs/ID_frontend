@@ -1,3 +1,4 @@
+import '../../../constants/api_endpoints.dart';
 import '../../../constants/db_table_const.dart';
 
 class TransactionModel {
@@ -39,5 +40,14 @@ class TransactionModel {
     requestDate = json[REQUESTED_DATE] ?? '';
     requestUntil = json[REQUESTED_UNTIL] ?? '';
     requestStatus = json[REQUEST_STATUS] ?? '';
+  }
+
+  TransactionModel.fromJsonApi(Map<String, dynamic> json) {
+    id = json[API_ID] ?? '';
+    requester = json[API_REQUESTER] ?? '';
+    requestData = json[API_REQUESTED_DATA] ?? '';
+    requestDate = json[API_REQUESTED_DATE] ?? '';
+    requestUntil = json[API_REQUESTED_UNTIL] ?? '';
+    requestStatus = json[API_REQUESTED_STATUS] ?? '';
   }
 }

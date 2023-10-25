@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
 import 'package:one_tech_data_control/core/data/repositories/mock/firebase_mock_repo/notify_firestore_repository.dart';
@@ -10,6 +8,9 @@ class NotifyBloc extends Bloc {
 
   ReplaySubject<TransactionModel> transactionModelStream =
       ReplaySubject<TransactionModel>();
+
+  ReplaySubject<List<TransactionModel>> listTransactionModelStream =
+      ReplaySubject<List<TransactionModel>>();
 
   void setTransaction(TransactionModel transactionModel) {
     _currentTransaction = transactionModel;
@@ -23,8 +24,11 @@ class NotifyBloc extends Bloc {
 
   NotifyBloc() {
     NotifyMockRepository.listenList((p0) {
-      var values = p0;
-      if (p0.isNotEmpty) transactionModelStream.sink.add(p0.last);
+      if (p0.isNotEmpty) transactionModelStream.sink.add(p0.first);
+    });
+
+    NotifyMockRepository.listenList((p0) {
+      if (p0.isNotEmpty) listTransactionModelStream.sink.add(p0);
     });
   }
 

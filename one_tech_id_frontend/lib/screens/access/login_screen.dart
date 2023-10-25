@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Seus dados são o que você é. Proteja-os e só compartilhe-os quando necessário",
+                    "Seus dados também são os seus bens. Proteja-os e só compartilhe-os quando necessário",
                     style: TextStyle(
                         fontSize: 24,
                         fontFamily: "Roboto",
