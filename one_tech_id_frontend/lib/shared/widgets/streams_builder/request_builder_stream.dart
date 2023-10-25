@@ -1,7 +1,6 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
-import 'package:one_tech_data_control/core/data/repositories/api_repositories/http_respository.dart';
 import 'package:one_tech_data_control/shared/widgets/text_widgets/no_active_request_text.dart';
 import '../../../blocs/notify_bloc.dart';
 import '../list_tile/requests_tile.dart';
@@ -17,12 +16,8 @@ class StreamRequestsBuilder extends StatefulWidget {
 }
 
 class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
-  late Stream _stream;
-
   @override
   void initState() {
-    _stream = BlocProvider.of<NotifyBloc>(context).listTransactionModelStream;
-
     super.initState();
   }
 
@@ -30,7 +25,7 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: _stream,
+        stream: BlocProvider.of<NotifyBloc>(context).listTransactionModelStream,
         builder: (context, snapshot) {
           List<TransactionModel> requestList = [];
 
@@ -40,9 +35,11 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
             );
           }
 
-          if (snapshot.data!.requestStatus.trim().toLowerCase() ==
-              widget.status.toLowerCase()) {
-            requestList.add(snapshot.data!);
+          for (int i = 0; i < snapshot.data!.length; i++) {
+            if (snapshot.data![i].requestStatus.trim().toLowerCase() ==
+                widget.status.toLowerCase()) {
+              requestList.add(snapshot.data![i]);
+            }
           }
 
           if (requestList.isEmpty) {
@@ -53,16 +50,13 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
             );
           }
 
-          return SizedBox(
-            height: 95,
-            child: Card(
-              elevation: 2,
-              child: ListView.builder(
-                itemCount: requestList.length,
-                itemBuilder: (context, index) =>
-                    RequestsTile(transactionModel: requestList[index]),
-              ),
-            ),
+          return ListView.builder(
+            itemCount: requestList.length,
+            itemBuilder: (context, index) => SizedBox(
+                height: 90,
+                child: Card(
+                    elevation: 2,
+                    child: RequestsTile(transactionModel: requestList[index]))),
           );
         },
       ),
