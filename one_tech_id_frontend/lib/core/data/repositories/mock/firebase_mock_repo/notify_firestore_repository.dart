@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../constants/db_table_const.dart';
 import '../../../models/transaction_model.dart';
@@ -39,18 +41,16 @@ class NotifyMockRepository {
         .collection(REQUEST_COLLECTION)
         .snapshots()
         .listen((event) {
-      print("Novos dados recebidos");
-
       List<TransactionModel> list = [];
-
       try {
         event.docs.forEach((element) {
-          list.add(TransactionModel.fromJson(
-              element.data() as Map<String, dynamic>, element.id));
+          var result = TransactionModel.fromJson(element.data(), element.id);
+          list.add(result);
         });
-
         onGetUpdatedList(list);
-      } finally {}
+      } catch (e) {
+        log(e.toString());
+      }
     });
   }
 }

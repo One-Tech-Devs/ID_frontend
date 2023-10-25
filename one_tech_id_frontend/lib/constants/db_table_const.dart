@@ -44,3 +44,4 @@ const String REQUESTED_DATA = "requested_data";
 const String REQUESTED_DATE = "requested_date";
 const String REQUESTED_UNTIL = "request_until";
 const String REQUEST_STATUS = "request_status";
+const String REQUEST_ID = "id";

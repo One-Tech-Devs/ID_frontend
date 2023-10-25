@@ -24,6 +24,12 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
         builder: (context, snapshot) {
           List<TransactionModel> requestList = [];
 
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: LinearProgressIndicator(),
+            );
+          }
+
           if (snapshot.data!.requestStatus.trim().toLowerCase() ==
               widget.status.toLowerCase()) {
             requestList.add(snapshot.data!);
@@ -36,6 +42,7 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
                   Center(child: NoActiveRequest(message: widget.onEmptyList)),
             );
           }
+
           return SizedBox(
             height: 95,
             child: Card(

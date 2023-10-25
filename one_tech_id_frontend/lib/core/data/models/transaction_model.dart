@@ -32,8 +32,8 @@ class TransactionModel {
     return json;
   }
 
-  TransactionModel.fromJson(Map<String, dynamic> json, String id) {
-    id = json[REQUEST_FIELD_ID] ?? '';
+  TransactionModel.fromJson(Map<String, dynamic> json, String idRequest) {
+    id = idRequest;
     requester = json[REQUESTER] ?? '';
     requestData = json[REQUESTED_DATA] ?? '';
     requestDate = json[REQUESTED_DATE] ?? '';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
-import 'package:one_tech_data_control/shared/widgets/text_widgets/nav_bar_text.dart';
 
 // ignore: must_be_immutable
 class NavBarDataVault extends StatefulWidget {
