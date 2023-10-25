@@ -18,18 +18,17 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // HelloStreamWidget(),
-            // SizedBox(
-            //   height: 25,
-            // ),
-            // Text(
-            //   "Nenhuma solicitação encontrada",
-            //   style: TextStyle(
-            //       fontSize: 22,
-            //       fontFamily: "Roboto",
-            //       fontWeight: FontWeight.w600),
-            // ),
-            RequestNotificationCard()
+            HelloStreamWidget(),
+            SizedBox(
+              height: 25,
+            ),
+            Text(
+              "Nenhuma solicitação encontrada",
+              style: TextStyle(
+                  fontSize: 22,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w600),
+            ),
           ],
         ),
       ),

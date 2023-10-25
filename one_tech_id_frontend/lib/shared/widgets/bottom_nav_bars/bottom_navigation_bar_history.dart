@@ -20,6 +20,7 @@ class _NavBarHistoryState extends State<NavBarHistory> {
       animation: widget.pageViewController,
       builder: (context, snapshot) {
         return BottomNavigationBar(
+            type: BottomNavigationBarType.shifting,
             selectedItemColor: iconSelectedColor,
             unselectedItemColor: iUnselectedconColor,
             currentIndex: widget.pageViewController.page?.round() ?? 0,
