@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import '../shared/widgets/streams_builder/hello_stream.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,7 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(
                   fontSize: 22,
                   fontFamily: "Roboto",
-                  fontWeight: FontWeight.w600),
+                  fontWeight: FontWeight.w600,
+                  color: IdColors.selectedColor),
             ),
           ],
         ),

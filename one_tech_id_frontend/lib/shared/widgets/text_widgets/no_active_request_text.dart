@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 
 class NoActiveRequest extends StatelessWidget {
   final String message;
@@ -9,7 +10,7 @@ class NoActiveRequest extends StatelessWidget {
     return Text(
       message,
       style: const TextStyle(
-        color: Color.fromARGB(255, 255, 87, 23),
+        color: IdColors.selectedColor,
         fontSize: 18,
         fontFamily: "Roboto",
         fontWeight: FontWeight.w600,

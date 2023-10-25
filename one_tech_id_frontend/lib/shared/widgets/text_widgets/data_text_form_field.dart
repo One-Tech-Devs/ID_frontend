@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 
 // ignore: must_be_immutable
 class TextForm extends StatelessWidget {
@@ -22,7 +23,7 @@ class TextForm extends StatelessWidget {
           controller: controller,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-              fillColor: const Color.fromARGB(255, 224, 204, 255),
+              fillColor: IdColors.navBarColor,
               labelText: text,
               border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(14)),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/screens/access/login_screen.dart';
 
 // ignore: must_be_immutable
@@ -12,18 +13,14 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  static const iUnselectedconColor = Color.fromARGB(255, 0, 64, 149);
-  static const iconSelectedColor = Color.fromARGB(255, 255, 87, 23);
-  static const navBarColor = Color.fromARGB(255, 251, 251, 255);
-
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
         animation: widget.pageViewController,
         builder: (context, snapshot) {
           return BottomNavigationBar(
-              selectedItemColor: iconSelectedColor,
-              unselectedItemColor: iUnselectedconColor,
+              selectedItemColor: IdColors.selectedColor,
+              unselectedItemColor: IdColors.unselectedconColor,
               currentIndex: widget.pageViewController.page?.round() ?? 0,
               onTap: (index) {
                 widget.pageViewController.animateToPage(index,
@@ -32,12 +29,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
               },
               items: [
                 const BottomNavigationBarItem(
-                    backgroundColor: navBarColor,
+                    backgroundColor: IdColors.navBarColor,
                     icon: Icon(Icons.home_filled, size: 32),
                     label: "Início",
                     activeIcon: Icon(Icons.home_filled, size: 32)),
                 const BottomNavigationBarItem(
-                    backgroundColor: navBarColor,
+                    backgroundColor: IdColors.navBarColor,
                     icon: Icon(Icons.wallet_outlined, size: 32),
                     label: "Carteira",
                     activeIcon: Icon(
@@ -45,7 +42,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       size: 32,
                     )),
                 const BottomNavigationBarItem(
-                    backgroundColor: navBarColor,
+                    backgroundColor: IdColors.navBarColor,
                     icon: Icon(Icons.history_outlined, size: 32),
                     label: "Histórico",
                     activeIcon: Icon(

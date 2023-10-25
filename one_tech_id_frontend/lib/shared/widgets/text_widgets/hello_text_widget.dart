@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import '../../../core/data/models/user_model.dart';
 
 class HelloWidget extends StatelessWidget {
@@ -9,11 +10,10 @@ class HelloWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const iconSelectedColor = Color.fromARGB(255, 255, 87, 23);
     return Text(
       "Olá, ${userModel.name}",
       style: const TextStyle(
-          fontSize: 24, fontFamily: "Roboto", color: iconSelectedColor),
+          fontSize: 24, fontFamily: "Roboto", color: IdColors.selectedColor),
     );
   }
 }
