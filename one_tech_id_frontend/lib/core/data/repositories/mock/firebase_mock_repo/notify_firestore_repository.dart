@@ -16,6 +16,13 @@ class NotifyMockRepository {
     return transactionModel;
   }
 
+  static Future<void> update(TransactionModel transactionModel) async {
+    await FirebaseFirestore.instance
+        .collection(REQUEST_COLLECTION)
+        .doc(transactionModel.id)
+        .update(transactionModel.toJson());
+  }
+
   static Future<TransactionModel> getTransaction(String transactionId) async {
     DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
         .collection(REQUESTER)
@@ -37,21 +44,13 @@ class NotifyMockRepository {
       List<TransactionModel> list = [];
 
       try {
-        print(event.docs.length);
-
         event.docs.forEach((element) {
-          print('Indo adicionar um novo item');
-
           list.add(TransactionModel.fromJson(
               element.data() as Map<String, dynamic>, element.id));
         });
 
-        print('Cheguei aqui :)');
-
         onGetUpdatedList(list);
-      } finally {
-        print('Chamando o evento...');
-      }
+      } finally {}
     });
   }
 }
