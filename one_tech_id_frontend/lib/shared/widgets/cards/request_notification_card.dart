@@ -7,7 +7,8 @@ import '../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore
 import '../list_tile/check_box_listtile_notification.dart';
 
 class RequestNotificationCard extends StatefulWidget {
-  RequestNotificationCard({super.key});
+  final String? transactionId;
+  const RequestNotificationCard({required this.transactionId, super.key});
 
   @override
   State<RequestNotificationCard> createState() =>
@@ -16,11 +17,12 @@ class RequestNotificationCard extends StatefulWidget {
 
 class _RequestNotificationCardState extends State<RequestNotificationCard> {
   TransactionModel transactionModel = TransactionModel(
-      requestData: '',
-      requester: '',
-      requestDate: '',
-      requestUntil: '',
-      requestStatus: '');
+    requestData: '',
+    requester: '',
+    requestDate: '',
+    requestUntil: '',
+    requestStatus: '',
+  );
 
   bool checkBoxValue = false;
 
@@ -30,6 +32,9 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
         stream: BlocProvider.of<NotifyBloc>(context).transactionModelStream,
         builder: (context, snapshot) {
           List<String> dataRequested = snapshot.data!.requestData.split(', ');
+          if (snapshot.data!.id == widget.transactionId) {
+            transactionModel = snapshot.data!;
+          }
 
           if (!snapshot.hasData)
             return Container(
@@ -50,7 +55,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                         Expanded(
                           child: Text(
                             textAlign: TextAlign.left,
-                            "${snapshot.data!.requester.toUpperCase()}",
+                            "${transactionModel.requester.toUpperCase()}",
                             style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.w700),
                           ),
@@ -73,7 +78,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                     padding: const EdgeInsets.only(
                         top: 15, left: 16, right: 16, bottom: 12),
                     child: Text(
-                      "Solicita o acesso a alguns dos seus dados até a data ${snapshot.data!.requestUntil}. A seguir é possível verificar os dados, selecionar e aprovar o acesso a eles.",
+                      "Solicita o acesso a alguns dos seus dados até a data ${transactionModel.requestUntil}. A seguir é possível verificar os dados, selecionar e aprovar o acesso a eles.",
                       style: const TextStyle(
                           fontSize: 16,
                           fontFamily: "Roboto",
@@ -102,7 +107,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                                   backgroundColor: MaterialStatePropertyAll(
                                       IdColors.unselectedconColor)),
                               onPressed: () async {
-                                snapshot.data!.requestStatus = "active";
+                                transactionModel.requestStatus = "active";
                                 await NotifyMockRepository.update(
                                     snapshot.data!);
                                 Navigator.of(context).pop();
@@ -119,7 +124,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                                   backgroundColor: MaterialStatePropertyAll(
                                       IdColors.rejectButton)),
                               onPressed: () async {
-                                snapshot.data!.requestStatus = "rejected";
+                                transactionModel.requestStatus = "rejected";
                                 await NotifyMockRepository.update(
                                     snapshot.data!);
                                 Navigator.of(context).pop();

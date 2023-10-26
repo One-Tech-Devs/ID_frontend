@@ -37,9 +37,11 @@ class RequestsTile extends StatelessWidget {
     return ListTile(
       onTap: () {
         if (transactionModel.requestStatus.contains("pending")) {
-          _dialogPendingBuilder(context);
+          _dialogPendingBuilder(context, transactionModel.id);
         }
-        _dialogDetailBuilder(context, transactionModel.id);
+        if (!transactionModel.requestStatus.contains("pending")) {
+          _dialogDetailBuilder(context, transactionModel.id);
+        }
       },
       title: Text(
         transactionModel.requester,
@@ -70,13 +72,16 @@ class RequestsTile extends StatelessWidget {
   }
 }
 
-Future<void> _dialogPendingBuilder(BuildContext context) {
+Future<void> _dialogPendingBuilder(
+    BuildContext context, String? transactionModelId) {
   return showDialog<void>(
     useSafeArea: true,
     barrierDismissible: true,
     context: context,
     builder: (BuildContext context) {
-      return RequestNotificationCard();
+      return RequestNotificationCard(
+        transactionId: transactionModelId,
+      );
     },
   );
 }
