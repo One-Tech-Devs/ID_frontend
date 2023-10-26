@@ -11,7 +11,7 @@ class NotifyMockRepository {
   static Future<TransactionModel> addTransaction(
       TransactionModel transactionModel) async {
     DocumentReference documentReference = await FirebaseFirestore.instance
-        .collection(REQUESTER)
+        .collection(REQUEST_COLLECTION)
         .add(transactionModel.toJson());
 
     transactionModel.id = documentReference.id;
@@ -27,12 +27,12 @@ class NotifyMockRepository {
 
   static Future<TransactionModel> getTransaction(String transactionId) async {
     DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-        .collection(REQUESTER)
+        .collection(REQUEST_COLLECTION)
         .doc(transactionId)
         .get();
 
     return TransactionModel.fromJson(
-        documentSnapshot.data as Map<String, dynamic>, documentSnapshot.id);
+        documentSnapshot.data() as Map<String, dynamic>, documentSnapshot.id);
   }
 
   static void listenList(

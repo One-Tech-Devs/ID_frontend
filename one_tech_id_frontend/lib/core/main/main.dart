@@ -13,9 +13,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // await RemoteConfigService.initialize();
-  // await MessagingService.initialize();
-
   runApp(const IDApp());
 }
 

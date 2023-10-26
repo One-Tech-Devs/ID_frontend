@@ -40,6 +40,7 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: FilterDropButton(),
       ),
       body: StreamBuilder(
@@ -77,41 +78,10 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
                 height: 90,
                 child: Card(
                     elevation: 2,
-                    child: InkWell(
-                        onTap: () {
-                          if (snapshot.data![index].requestStatus
-                              .contains("pending")) {
-                            _dialogPendingBuilder(context);
-                          }
-                          _dialogDetailBuilder(context);
-                        },
-                        child: RequestsTile(
-                            transactionModel: requestList[index])))),
+                    child: RequestsTile(transactionModel: requestList[index]))),
           );
         },
       ),
     );
   }
-}
-
-Future<void> _dialogPendingBuilder(BuildContext context) {
-  return showDialog<void>(
-    useSafeArea: true,
-    barrierDismissible: true,
-    context: context,
-    builder: (BuildContext context) {
-      return RequestNotificationCard();
-    },
-  );
-}
-
-Future<void> _dialogDetailBuilder(BuildContext context) {
-  return showDialog<void>(
-    useSafeArea: true,
-    barrierDismissible: true,
-    context: context,
-    builder: (BuildContext context) {
-      return RequestDetailsCard();
-    },
-  );
 }
