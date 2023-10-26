@@ -1,8 +1,5 @@
-import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:one_tech_data_control/blocs/notify_bloc.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
-import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
 import '../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore_repository.dart';
 import '../list_tile/check_box_listtile_notification.dart';
 

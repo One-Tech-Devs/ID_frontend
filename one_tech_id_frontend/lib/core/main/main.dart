@@ -2,7 +2,6 @@ import 'package:bloc_provider/bloc_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/blocs/notify_bloc.dart';
-import 'package:one_tech_data_control/core/services/notification_service.dart';
 import '../../blocs/user_bloc.dart';
 import '../../firebase_options.dart';
 import '../../screens/access/login_screen.dart';

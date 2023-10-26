@@ -4,9 +4,6 @@ import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
 import 'package:one_tech_data_control/shared/widgets/filter_button/dropdown_filter.dart';
 import 'package:one_tech_data_control/shared/widgets/text_widgets/no_active_request_text.dart';
 import '../../../blocs/notify_bloc.dart';
-import '../../../config/colors_constant/colors_code.dart';
-import '../cards/request_details_card.dart';
-import '../cards/request_notification_card.dart';
 import '../list_tile/requests_tile.dart';
 
 List<String> filterList = [
