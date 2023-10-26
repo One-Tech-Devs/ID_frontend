@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/blocs/notify_bloc.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
+import '../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore_repository.dart';
 import '../list_tile/check_box_listtile_notification.dart';
 
 class RequestNotificationCard extends StatefulWidget {
@@ -29,7 +30,6 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
         stream: BlocProvider.of<NotifyBloc>(context).transactionModelStream,
         builder: (context, snapshot) {
           List<String> dataRequested = snapshot.data!.requestData.split(', ');
-          snapshot.data!.requestStatus == "pending";
 
           if (!snapshot.hasData)
             return Container(
@@ -101,7 +101,12 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                               style: const ButtonStyle(
                                   backgroundColor: MaterialStatePropertyAll(
                                       IdColors.unselectedconColor)),
-                              onPressed: () {},
+                              onPressed: () async {
+                                snapshot.data!.requestStatus = "active";
+                                await NotifyMockRepository.update(
+                                    snapshot.data!);
+                                Navigator.of(context).pop();
+                              },
                               child: const Text(
                                 "Liberar",
                                 style: TextStyle(color: Colors.white),
@@ -113,7 +118,10 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                               style: const ButtonStyle(
                                   backgroundColor: MaterialStatePropertyAll(
                                       IdColors.rejectButton)),
-                              onPressed: () {
+                              onPressed: () async {
+                                snapshot.data!.requestStatus = "rejected";
+                                await NotifyMockRepository.update(
+                                    snapshot.data!);
                                 Navigator.of(context).pop();
                               },
                               child: const Text(

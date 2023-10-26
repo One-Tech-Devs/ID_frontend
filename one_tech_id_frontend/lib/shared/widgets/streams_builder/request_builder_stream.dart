@@ -4,8 +4,18 @@ import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
 import 'package:one_tech_data_control/shared/widgets/filter_button/dropdown_filter.dart';
 import 'package:one_tech_data_control/shared/widgets/text_widgets/no_active_request_text.dart';
 import '../../../blocs/notify_bloc.dart';
+import '../../../config/colors_constant/colors_code.dart';
+import '../cards/request_details_card.dart';
 import '../cards/request_notification_card.dart';
 import '../list_tile/requests_tile.dart';
+
+List<String> filterList = [
+  'Mais antigo',
+  "Mais recente",
+  "Expirando",
+  "Ordem Alfabética A-Z",
+  "Ordem Alfabética Z-A"
+];
 
 class StreamRequestsBuilder extends StatefulWidget {
   final String status;
@@ -18,6 +28,9 @@ class StreamRequestsBuilder extends StatefulWidget {
 }
 
 class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
+  late String orderBy;
+  String dropdownValue = filterList.first;
+
   @override
   void initState() {
     super.initState();
@@ -27,7 +40,6 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: FilterDropButton(),
       ),
       body: StreamBuilder(
@@ -45,6 +57,9 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
             if (snapshot.data![i].requestStatus.trim().toLowerCase() ==
                 widget.status.toLowerCase()) {
               requestList.add(snapshot.data![i]);
+              requestList.sort(
+                (a, b) => a.requester.compareTo(b.requester),
+              );
             }
           }
 
@@ -63,7 +78,13 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
                 child: Card(
                     elevation: 2,
                     child: InkWell(
-                        onTap: () => _dialogBuilder(context),
+                        onTap: () {
+                          if (snapshot.data![index].requestStatus
+                              .contains("pending")) {
+                            _dialogPendingBuilder(context);
+                          }
+                          _dialogDetailBuilder(context);
+                        },
                         child: RequestsTile(
                             transactionModel: requestList[index])))),
           );
@@ -73,13 +94,24 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
   }
 }
 
-Future<void> _dialogBuilder(BuildContext context) {
+Future<void> _dialogPendingBuilder(BuildContext context) {
   return showDialog<void>(
     useSafeArea: true,
     barrierDismissible: true,
     context: context,
     builder: (BuildContext context) {
       return RequestNotificationCard();
+    },
+  );
+}
+
+Future<void> _dialogDetailBuilder(BuildContext context) {
+  return showDialog<void>(
+    useSafeArea: true,
+    barrierDismissible: true,
+    context: context,
+    builder: (BuildContext context) {
+      return RequestDetailsCard();
     },
   );
 }

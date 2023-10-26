@@ -49,6 +49,22 @@ dependencies:
   firebase_auth: ^4.10.1
   cloud_firestore: ^4.12.0
   bloc_provider: ^1.0.0
+  flutter_native_splash: ^2.3.4
+  flutter_launcher_icons: ^0.13.1
+
+flutter_native_splash:
+  color: "#004095"
+  image: "assets/app/icon_app.png"
+  android: true
+  ios: true
+
+flutter_icons:
+  image_path: "assets/app/icon_app.png"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  adaptative_icon_background: "#FFFFFF"
+  adaptative_icon_foreground: "assets/app/icon_app.png"
 
 dev_dependencies:
   flutter_test:
