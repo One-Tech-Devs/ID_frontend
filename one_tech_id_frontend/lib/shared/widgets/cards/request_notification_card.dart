@@ -7,7 +7,7 @@ import '../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore
 import '../list_tile/check_box_listtile_notification.dart';
 
 class RequestNotificationCard extends StatefulWidget {
-  final String? transactionId;
+  final String transactionId;
   const RequestNotificationCard({required this.transactionId, super.key});
 
   @override
@@ -16,32 +16,16 @@ class RequestNotificationCard extends StatefulWidget {
 }
 
 class _RequestNotificationCardState extends State<RequestNotificationCard> {
-  TransactionModel transactionModel = TransactionModel(
-    requestData: '',
-    requester: '',
-    requestDate: '',
-    requestUntil: '',
-    requestStatus: '',
-  );
-
   bool checkBoxValue = false;
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: BlocProvider.of<NotifyBloc>(context).transactionModelStream,
+    return FutureBuilder(
+        future: NotifyMockRepository.getTransaction(widget.transactionId),
         builder: (context, snapshot) {
-          List<String> dataRequested = snapshot.data!.requestData.split(', ');
-          if (snapshot.data!.id == widget.transactionId) {
-            transactionModel = snapshot.data!;
-          }
-
           if (!snapshot.hasData)
-            return Container(
-              height: 0,
-              width: 0,
-            );
-
+            return Center(child: LinearProgressIndicator());
+          List<String> dataRequested = snapshot.data!.requestData.split(', ');
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 55, horizontal: 4),
             child: Card(
@@ -55,7 +39,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                         Expanded(
                           child: Text(
                             textAlign: TextAlign.left,
-                            "${transactionModel.requester.toUpperCase()}",
+                            "${snapshot.data!.requester.toUpperCase()}",
                             style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.w700),
                           ),
@@ -78,7 +62,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                     padding: const EdgeInsets.only(
                         top: 15, left: 16, right: 16, bottom: 12),
                     child: Text(
-                      "Solicita o acesso a alguns dos seus dados até a data ${transactionModel.requestUntil}. A seguir é possível verificar os dados, selecionar e aprovar o acesso a eles.",
+                      "Solicita o acesso a alguns dos seus dados até a data ${snapshot.data!.requestUntil}. A seguir é possível verificar os dados, selecionar e aprovar o acesso a eles.",
                       style: const TextStyle(
                           fontSize: 16,
                           fontFamily: "Roboto",
@@ -107,7 +91,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                                   backgroundColor: MaterialStatePropertyAll(
                                       IdColors.unselectedconColor)),
                               onPressed: () async {
-                                transactionModel.requestStatus = "active";
+                                snapshot.data!.requestStatus = "active";
                                 await NotifyMockRepository.update(
                                     snapshot.data!);
                                 Navigator.of(context).pop();
@@ -124,7 +108,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                                   backgroundColor: MaterialStatePropertyAll(
                                       IdColors.rejectButton)),
                               onPressed: () async {
-                                transactionModel.requestStatus = "rejected";
+                                snapshot.data!.requestStatus = "rejected";
                                 await NotifyMockRepository.update(
                                     snapshot.data!);
                                 Navigator.of(context).pop();

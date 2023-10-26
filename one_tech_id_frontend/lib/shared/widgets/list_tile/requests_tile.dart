@@ -80,7 +80,7 @@ Future<void> _dialogPendingBuilder(
     context: context,
     builder: (BuildContext context) {
       return RequestNotificationCard(
-        transactionId: transactionModelId,
+        transactionId: transactionModelId!,
       );
     },
   );
