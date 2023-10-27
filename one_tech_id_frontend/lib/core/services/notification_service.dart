@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import '../../constants/db_table_const.dart';
 import 'routes_service.dart';
 
 class CustomNotification {
@@ -39,6 +42,19 @@ class NotificationService {
       ),
       onSelectNotification: _onSelectNotification,
     );
+
+    Stream<QuerySnapshot<Map<String, dynamic>>> notificationStream =
+        FirebaseFirestore.instance
+            .collection(REQUEST_COLLECTION)
+            .where(REQUEST_STATUS, isEqualTo: "pending")
+            .snapshots();
+    notificationStream.listen((event) {
+      if (event.docs.isEmpty) {
+        return;
+      }
+      showRequestNotification(event.docs.last);
+    });
+    log("Olá passei aqui");
   }
 
   _onSelectNotification(String? payload) {
@@ -77,11 +93,13 @@ class NotificationService {
         enableVibration: true,
         priority: Priority.max,
         importance: Importance.max,
-        icon: "@mipmap/launcher_icon.png");
+        icon: "@mipmap/launcher_icon");
     NotificationDetails details =
         NotificationDetails(android: androidNotificationDetails);
     flutterLocalNotificationsPlugin.show(
         01, event.get("requester"), event.get("requested_data"), details);
+
+    log("passando aqui...");
   }
 
   checkForNotifications() async {
