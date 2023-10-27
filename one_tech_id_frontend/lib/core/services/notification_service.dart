@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -65,6 +66,22 @@ class NotificationService {
         notification.body,
         NotificationDetails(android: androidNotificationDetails),
         payload: notification.payload);
+  }
+
+  showRequestNotification(QueryDocumentSnapshot<Map<String, dynamic>> event) {
+    androidNotificationDetails = const AndroidNotificationDetails(
+        'request', 'notification',
+        channelDescription: "Notify the User",
+        channelShowBadge: true,
+        enableLights: true,
+        enableVibration: true,
+        priority: Priority.max,
+        importance: Importance.max,
+        icon: "@mipmap/launcher_icon.png");
+    NotificationDetails details =
+        NotificationDetails(android: androidNotificationDetails);
+    flutterLocalNotificationsPlugin.show(
+        01, event.get("requester"), event.get("requested_data"), details);
   }
 
   checkForNotifications() async {

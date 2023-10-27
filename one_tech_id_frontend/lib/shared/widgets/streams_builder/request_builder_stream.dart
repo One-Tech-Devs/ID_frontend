@@ -69,15 +69,6 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
             );
           }
 
-          if (snapshot.data!.contains(element)) {
-            Provider.of<NotificationService>(context, listen: false)
-                .showNotification(CustomNotification(
-                    id: 1,
-                    title: "Teste",
-                    body: "Olá Mundo",
-                    payload: "payload"));
-          }
-
           return ListView.builder(
             itemCount: requestList.length,
             itemBuilder: (context, index) => SizedBox(

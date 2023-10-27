@@ -14,6 +14,9 @@ class NotifyBloc extends Bloc {
   ReplaySubject<TransactionModel> transactionModelStream =
       ReplaySubject<TransactionModel>();
 
+  ReplaySubject<TransactionModel> notificationStream =
+      ReplaySubject<TransactionModel>();
+
   ReplaySubject<List<TransactionModel>> listTransactionModelStream =
       ReplaySubject<List<TransactionModel>>();
 
@@ -37,6 +40,12 @@ class NotifyBloc extends Bloc {
             p0.firstWhere((element) => element.requestStatus == "pending"));
       }
       log(p0.toString());
+    });
+
+    NotifyMockRepository.listenList((p0) {
+      if (p0.isNotEmpty) {
+        notificationStream.sink.add(p0.last);
+      }
     });
 
     NotifyMockRepository.listenList((p0) {

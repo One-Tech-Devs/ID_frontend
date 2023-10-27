@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 
 List<String> filterList = [
+  "Ordem Alfabética A-Z",
+  "Ordem Alfabética Z-A",
   'Mais antigo',
   "Mais recente",
   "Expirando",
-  "Ordem Alfabética A-Z",
-  "Ordem Alfabética Z-A"
 ];
 
 class FilterDropButton extends StatefulWidget {
