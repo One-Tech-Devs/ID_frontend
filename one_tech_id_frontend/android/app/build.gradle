@@ -55,6 +55,12 @@ android {
         versionName flutterVersionName
     }
 
+    compileOptions{
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

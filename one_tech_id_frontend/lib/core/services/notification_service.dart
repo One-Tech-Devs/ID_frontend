@@ -1,4 +1,7 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import 'routes_service.dart';
 
 class CustomNotification {
   final int id;
@@ -14,83 +17,61 @@ class CustomNotification {
 }
 
 class NotificationService {
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  late AndroidNotificationDetails androidNotificationDetails;
 
-  final AndroidInitializationSettings androidInitializationSettings =
-      AndroidInitializationSettings('background');
-
-  void initialNotification() async {
-    InitializationSettings initializationSettings =
-        InitializationSettings(android: androidInitializationSettings);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  NotificationService() {
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    _setupNotifications();
   }
 
-  void sendNotification() async {
-    AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails("channelId", "channelName",
-            importance: Importance.max, priority: Priority.max);
+  _setupNotifications() async {
+    await _initializeNotifications();
+  }
 
-    NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+  _initializeNotifications() async {
+    //setup para Android
+    const android = AndroidInitializationSettings("@mipmap/launcher_icon");
+    await flutterLocalNotificationsPlugin.initialize(
+      const InitializationSettings(
+        android: android,
+      ),
+      onSelectNotification: _onSelectNotification,
+    );
+  }
 
-    await flutterLocalNotificationsPlugin.show(
-        0, "Title", "Olá Mundo!", notificationDetails);
+  _onSelectNotification(String? payload) {
+    if (payload != null && payload.isNotEmpty) {
+      Navigator.of(Routes.navigatorKey!.currentContext!)
+          .pushReplacementNamed(payload);
+    }
+  }
+
+  showNotification(CustomNotification notification) {
+    androidNotificationDetails = const AndroidNotificationDetails(
+      "lembretes_notification",
+      "Lembretes",
+      channelDescription: "Lembretes passam por aqui",
+      importance: Importance.max,
+      priority: Priority.max,
+      icon: "@mipmap/ic_launcher",
+      enableVibration: true,
+      enableLights: true,
+    );
+
+    flutterLocalNotificationsPlugin.show(
+        notification.id,
+        notification.title,
+        notification.body,
+        NotificationDetails(android: androidNotificationDetails),
+        payload: notification.payload);
+  }
+
+  checkForNotifications() async {
+    final details =
+        await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+    if (details != null && details.didNotificationLaunchApp) {
+      _onSelectNotification(details.payload);
+    }
   }
 }
-
-//   NotificationService() {
-//     localNotificationsPlugin = FlutterLocalNotificationsPlugin();
-//     _setupNotifications();
-//   }
-
-//   _setupNotifications() async {
-//     await _initializeNotifications();
-//   }
-
-//   _initializeNotifications() async {
-//     //setup para Android
-//     const android = AndroidInitializationSettings("@mipmap/launcher_icon");
-//     await localNotificationsPlugin.initialize(
-//       const InitializationSettings(
-//         android: android,
-//       ),
-//       onDidReceiveNotificationResponse: _onSelectNotification,
-//       onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
-//     );
-//   }
-
-//   _onSelectNotification(String? payload) {
-//     if (payload != null && payload.isNotEmpty) {
-//       Navigator.of(Routes.navigatorKey!.currentContext!)
-//           .pushReplacementNamed(payload);
-//     }
-//   }
-
-//   showNotification(CustomNotification notification) {
-//     androidNotificationDetails = const AndroidNotificationDetails(
-//       "lembretes_notification",
-//       "Lembretes",
-//       channelDescription: "Lembretes passam por aqui",
-//       importance: Importance.max,
-//       priority: Priority.max,
-//       enableVibration: true,
-//       enableLights: true,
-//     );
-
-//     localNotificationsPlugin.show(
-//         notification.id,
-//         notification.title,
-//         notification.body,
-//         NotificationDetails(android: androidNotificationDetails),
-//         payload: notification.payload);
-//   }
-
-//   checkForNotifications() async {
-//     final details =
-//         await localNotificationsPlugin.getNotificationAppLaunchDetails();
-//     if (details != null && details.didNotificationLaunchApp) {
-//       _onSelectNotification(details);
-//     }
-//   }
-// }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
+import 'package:provider/provider.dart';
+import '../core/services/notification_service.dart';
 import '../shared/widgets/streams_builder/hello_stream.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool valor = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +33,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w600,
                   color: IdColors.selectedColor),
             ),
+            const SizedBox(
+              height: 25,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    valor = !valor;
+                  });
+                },
+                child: Text("Clique aqui"))
           ],
         ),
       ),

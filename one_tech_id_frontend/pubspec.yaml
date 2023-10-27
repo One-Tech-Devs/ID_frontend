@@ -51,7 +51,8 @@ dependencies:
   bloc_provider: ^1.0.0
   flutter_native_splash: ^2.3.4
   flutter_launcher_icons: ^0.13.1
-  flutter_local_notifications: ^16.1.0
+  flutter_local_notifications: ^9.4.0
+  provider: 
 
 
 

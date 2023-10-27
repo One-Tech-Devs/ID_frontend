@@ -2,9 +2,11 @@ import 'package:bloc_provider/bloc_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/blocs/notify_bloc.dart';
+import 'package:provider/provider.dart';
 import '../../blocs/user_bloc.dart';
 import '../../firebase_options.dart';
 import '../../screens/access/login_screen.dart';
+import '../services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,12 +15,12 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(IDApp());
-  // runApp(MultiProvider(providers: [
-  //   Provider<NotificationService>(
-  //     create: (context) => NotificationService(),
-  //   )
-  // ], child: const IDApp()));
+  // runApp(IDApp());
+  runApp(MultiProvider(providers: [
+    Provider<NotificationService>(
+      create: (context) => NotificationService(),
+    )
+  ], child: const IDApp()));
 }
 
 class IDApp extends StatelessWidget {
