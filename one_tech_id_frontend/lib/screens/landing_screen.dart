@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/colors_constant/colors_code.dart';
 import '../shared/widgets/bottom_nav_bars/bottom_navigation_bar.dart';
 import 'data_vault/data_vault_lading_page.dart';
 import 'history/history_landing_page.dart';
@@ -29,7 +30,7 @@ class _LandingScreenState extends State<LandingScreen> {
             child: IconButton(
               onPressed: () {},
               icon: const Icon(Icons.notifications,
-                  size: 32, color: Color.fromARGB(255, 0, 64, 149)),
+                  size: 32, color: IdColors.unselectedconColor),
             ),
           ),
           automaticallyImplyLeading: false,
@@ -41,7 +42,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   icon: const Icon(
                     Icons.settings,
                     size: 32,
-                    color: Color.fromARGB(255, 0, 64, 149),
+                    color: IdColors.unselectedconColor,
                   )),
             )
           ]),

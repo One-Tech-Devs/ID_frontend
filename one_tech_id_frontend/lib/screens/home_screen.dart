@@ -17,15 +17,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HelloStreamWidget(),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            Text(
+            const Text(
               "Nenhuma solicitação encontrada",
               style: TextStyle(
                   fontSize: 22,
@@ -36,6 +36,17 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 25,
             ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 105, vertical: 95),
+              child: SizedBox(
+                height: 250,
+                width: 180,
+                child: Center(
+                  child: Image.asset("assets/app/ID_marcadagua.png"),
+                ),
+              ),
+            )
           ],
         ),
       ),

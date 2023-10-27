@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/screens/landing_screen.dart';
 import 'package:one_tech_data_control/shared/widgets/login/bottom_sheet_login.dart';
 import '../../core/services/local_auth_service.dart';
@@ -40,6 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     width: constraints.maxWidth * 0.76,
                     child: FilledButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                                IdColors.unselectedconColor)),
                         onPressed: () {
                           showModalBottomSheet(
                             isScrollControlled: true,
@@ -61,6 +65,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     width: constraints.maxWidth * 0.76,
                     child: FilledButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                                IdColors.unselectedconColor)),
                         onPressed: () async {
                           final authenticate = await LocalAuth.authenticate();
 
@@ -83,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {},
                       child: const Text(
                         "Não possui uma ID ainda?\n Clique aqui para criar uma.",
-                        style: TextStyle(),
+                        style: TextStyle(color: IdColors.unselectedconColor),
                       ))
                 ],
               ),
