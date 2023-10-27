@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
-import 'package:provider/provider.dart';
-import '../core/services/notification_service.dart';
 import '../shared/widgets/streams_builder/hello_stream.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HelloStreamWidget(),
+            const HelloStreamWidget(),
             const SizedBox(
               height: 25,
             ),
