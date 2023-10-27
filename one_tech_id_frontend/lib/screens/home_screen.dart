@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 25,
             ),
             const Text(
-              "Nenhuma solicitação encontrada",
+              "Tudo certo por aqui. Você não possui solicitações pendentes.",
               style: TextStyle(
                   fontSize: 22,
                   fontFamily: "Roboto",
@@ -38,10 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 105, vertical: 95),
+                  const EdgeInsets.symmetric(horizontal: 105, vertical: 35),
               child: SizedBox(
-                height: 250,
-                width: 180,
+                height: 175,
                 child: Center(
                   child: Image.asset("assets/app/ID_marcadagua.png"),
                 ),

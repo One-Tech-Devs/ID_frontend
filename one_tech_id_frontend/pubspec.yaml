@@ -59,12 +59,12 @@ dependencies:
 
 flutter_native_splash:
   color: "#EADDFF"
-  image: "assets/app/icon_app.jpeg"
+  image: "assets/app/ID_transp.png"
   android: true
   ios: true
 
 flutter_icons:
-  image_path: "assets/app/icon_app.jpeg"
+  image_path: "assets/app/ID_transp.png"
   ios: true
   remove_alpha_ios: true
   android: "launcher_icon"
