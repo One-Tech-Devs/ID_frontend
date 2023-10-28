@@ -6,7 +6,7 @@ import '../../../../constants/api_endpoints.dart';
 
 class ApiRepository {
   static Future<TransactionModel> getRequest() async {
-    Uri uri = Uri.https(URL_API, '/api/DataRequest');
+    Uri uri = Uri.http(URL_API, '/api/DataRequest');
 
     http.Response response = await http.get(uri);
 

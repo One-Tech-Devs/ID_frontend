@@ -3,6 +3,7 @@ import '../../../constants/db_table_const.dart';
 
 class TransactionModel {
   String? id = '';
+  String? clientId = '';
   String requester = '';
   String requestData = '';
   String requestDate = '';
@@ -11,6 +12,7 @@ class TransactionModel {
 
   TransactionModel(
       {this.id,
+      this.clientId,
       required this.requestData,
       required this.requester,
       required this.requestDate,
@@ -44,6 +46,7 @@ class TransactionModel {
 
   TransactionModel.fromJsonApi(Map<String, dynamic> json) {
     id = json[API_ID] ?? '';
+    clientId = json[API_CLIENT_ID] ?? '';
     requester = json[API_REQUESTER] ?? '';
     requestData = json[API_REQUESTED_DATA] ?? '';
     requestDate = json[API_REQUESTED_DATE] ?? '';
