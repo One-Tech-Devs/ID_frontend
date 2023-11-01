@@ -33,15 +33,15 @@ const String REQUEST_FIELD_ID = "request_id";
 const String REQUEST_FIELD_REQUESTER = "requester";
 const String REQUEST_FIELD_REQUEST_DATA = "request_data";
 const String REQUEST_FIELD_REQUEST_DATE = "request_date";
-const String REQUEST_FIELD_REQUESTE_UNTIL = "request_until";
+const String REQUEST_FIELD_REQUEST_UNTIL = "request_until";
 const String REQUEST_FIELD_STATUS = "request_status";
 
 //All Firebase related consts
 
 const String REQUEST_COLLECTION = "requested_data";
 const String REQUESTER = "requester";
-const String REQUESTED_DATA = "requested_data";
-const String REQUESTED_DATE = "requested_date";
-const String REQUESTED_UNTIL = "request_until";
+const String REQUEST_DATA = "request_data";
+const String REQUEST_DATE = "request_date";
+const String REQUEST_UNTIL = "request_until";
 const String REQUEST_STATUS = "request_status";
 const String REQUEST_ID = "id";

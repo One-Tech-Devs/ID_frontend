@@ -24,7 +24,7 @@ class TransactionModel {
       REQUEST_FIELD_REQUESTER: requester,
       REQUEST_FIELD_REQUEST_DATA: requestData,
       REQUEST_FIELD_REQUEST_DATE: requestDate,
-      REQUEST_FIELD_REQUESTE_UNTIL: requestUntil,
+      REQUEST_FIELD_REQUEST_UNTIL: requestUntil,
       REQUEST_FIELD_STATUS: requestStatus
     };
 
@@ -38,9 +38,9 @@ class TransactionModel {
   TransactionModel.fromJson(Map<String, dynamic> json, String idRequest) {
     id = idRequest;
     requester = json[REQUESTER] ?? '';
-    requestData = json[REQUESTED_DATA] ?? '';
-    requestDate = json[REQUESTED_DATE] ?? '';
-    requestUntil = json[REQUESTED_UNTIL] ?? '';
+    requestData = json[REQUEST_DATA] ?? '';
+    requestDate = json[REQUEST_DATE] ?? '';
+    requestUntil = json[REQUEST_UNTIL] ?? '';
     requestStatus = json[REQUEST_STATUS] ?? '';
   }
 

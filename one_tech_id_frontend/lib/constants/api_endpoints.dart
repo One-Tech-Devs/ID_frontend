@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 //Url endpoit API
-const String URL_API = "10.0.2.2:5034";
+const String URL_API = "onetech.devs2blu.dev.br";
 
 //http
 //http://localhost:5034/api/DataRequest

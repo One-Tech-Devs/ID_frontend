@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -12,7 +13,7 @@ import '../services/notification_service.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print("Handling a background message");
+  log("Handling a background message");
 }
 
 void main() async {

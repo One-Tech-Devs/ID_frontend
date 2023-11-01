@@ -43,6 +43,8 @@ class NotificationService {
       onSelectNotification: _onSelectNotification,
     );
 
+    //inicializa dentro do metodo de inicilização do service de notificaçãos o serviço de push notificatios
+    //que escuta as alterações no firestore
     Stream<QuerySnapshot<Map<String, dynamic>>> notificationStream =
         FirebaseFirestore.instance
             .collection(REQUEST_COLLECTION)
@@ -84,6 +86,8 @@ class NotificationService {
         payload: notification.payload);
   }
 
+  //função que será inicializada no _initialize(), setar priority para max
+  //e importance para max, se não estiver no grau de importância max, a notificação não será exibida como push notification.
   showRequestNotification(QueryDocumentSnapshot<Map<String, dynamic>> event) {
     androidNotificationDetails = const AndroidNotificationDetails(
         'request', 'notification',
