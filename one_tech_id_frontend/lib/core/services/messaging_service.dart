@@ -1,6 +1,5 @@
-import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:one_tech_data_control/core/main/main.dart';
+import 'package:one_tech_data_control/main.dart';
 
 class MessagingNotify {
   final _firebaseMessaging = FirebaseMessaging.instance;
@@ -10,7 +9,8 @@ class MessagingNotify {
 
     final fCMToken = await _firebaseMessaging.getToken();
 
-    log("Token: ${fCMToken}");
+    //Token para serviço cloud messaging caso necessário
+    // log("Token: ${fCMToken}");
     initPushNotification();
   }
 

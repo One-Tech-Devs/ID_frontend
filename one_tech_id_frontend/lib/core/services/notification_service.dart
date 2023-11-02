@@ -56,7 +56,6 @@ class NotificationService {
       }
       showRequestNotification(event.docs.last);
     });
-    log("Olá passei aqui");
   }
 
   _onSelectNotification(String? payload) {
@@ -102,8 +101,6 @@ class NotificationService {
         NotificationDetails(android: androidNotificationDetails);
     flutterLocalNotificationsPlugin.show(
         01, event.get("requester"), event.get("requested_data"), details);
-
-    log("passando aqui...");
   }
 
   checkForNotifications() async {

@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 
-import '../../../../constants/db_table_const.dart';
-import '../../../../providers/db_provider.dart';
-import '../../models/address_model.dart';
+import '../../../../../constants/db_table_const.dart';
+import '../../../../../providers/db_provider.dart';
+import '../../../models/address_model.dart';
 
 class SQFLiteAddressRepository extends ChangeNotifier {
   static Future<void> add(AddressModel addressModel) async {

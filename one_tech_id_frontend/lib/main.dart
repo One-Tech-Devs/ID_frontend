@@ -5,11 +5,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/blocs/notify_bloc.dart';
 import 'package:provider/provider.dart';
-import '../../blocs/user_bloc.dart';
-import '../../firebase_options.dart';
-import '../../screens/access/login_screen.dart';
-import '../services/messaging_service.dart';
-import '../services/notification_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'blocs/user_bloc.dart';
+import 'firebase_options.dart';
+import 'screens/access/login_screen.dart';
+import 'core/services/messaging_service.dart';
+import 'core/services/notification_service.dart';
+import 'screens/access/onboarding_screen.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -18,6 +20,8 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final showHome = prefs.getBool('showHome') ?? false;
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -30,11 +34,12 @@ void main() async {
     Provider<NotificationService>(
       create: (context) => NotificationService(),
     )
-  ], child: const IDApp()));
+  ], child: IDApp(showHome: showHome)));
 }
 
 class IDApp extends StatelessWidget {
-  const IDApp({super.key});
+  final bool showHome;
+  const IDApp({required this.showHome, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +51,7 @@ class IDApp extends StatelessWidget {
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(useMaterial3: true),
-          home: const LoginScreen(),
+          home: showHome ? const LoginScreen() : const OnBoardScreen(),
         ),
       ),
     );
