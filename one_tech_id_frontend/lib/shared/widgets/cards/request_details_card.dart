@@ -5,7 +5,7 @@ import 'request_details_by_id_card.dart';
 
 class RequestDetailsCard extends StatelessWidget {
   final String? transactionModelId;
-  RequestDetailsCard({required this.transactionModelId, super.key});
+  const RequestDetailsCard({required this.transactionModelId, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class RequestDetailsCard extends StatelessWidget {
         future: NotifyMockRepository.getTransaction(transactionModelId!),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: LinearProgressIndicator());
+            return const Center(child: LinearProgressIndicator());
           }
           if (snapshot.hasError) {
             return Center(

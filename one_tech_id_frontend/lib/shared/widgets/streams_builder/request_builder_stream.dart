@@ -38,7 +38,7 @@ class _StreamRequestsBuilderState extends State<StreamRequestsBuilder> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: FilterDropButton(),
+        title: const FilterDropButton(),
       ),
       body: StreamBuilder(
         stream: BlocProvider.of<NotifyBloc>(context).listTransactionModelStream,

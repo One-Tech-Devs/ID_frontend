@@ -47,7 +47,7 @@ class RequestDetails extends StatelessWidget {
             Expanded(
               child: Text(
                 transactionModel.requestData,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ),
             Padding(

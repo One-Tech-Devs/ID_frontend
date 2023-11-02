@@ -145,7 +145,7 @@ class _AddressInsertDataState extends State<AddressInsertData> {
                             onEdit = !onEdit;
                           }
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.save,
                           color: iconSelectedColor,
                         ))
@@ -156,7 +156,7 @@ class _AddressInsertDataState extends State<AddressInsertData> {
                             onEdit = !onEdit;
                           });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.edit,
                           color: iconSelectedColor,
                         )),

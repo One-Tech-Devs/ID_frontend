@@ -93,7 +93,7 @@ class _DocsInsertDataState extends State<DocsInsertData> {
                         onEdit = !onEdit;
                       }
                     },
-                    icon: Icon(Icons.save, color: iconSelectedColor),
+                    icon: const Icon(Icons.save, color: iconSelectedColor),
                   )
                 : IconButton(
                     onPressed: () {
@@ -102,7 +102,7 @@ class _DocsInsertDataState extends State<DocsInsertData> {
                         onEdit = !onEdit;
                       });
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.edit,
                       color: iconSelectedColor,
                     )),

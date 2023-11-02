@@ -1,5 +1,6 @@
 import '../../core/data/models/user_model.dart';
 
+// ignore: constant_identifier_names
 const String API_URL = "";
 
 abstract class IRepository {

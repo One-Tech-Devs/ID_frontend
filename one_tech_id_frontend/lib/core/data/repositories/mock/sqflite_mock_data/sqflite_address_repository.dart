@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps, avoid_function_literals_in_foreach_calls
+
 import 'dart:developer';
 import 'package:flutter/material.dart';
 
