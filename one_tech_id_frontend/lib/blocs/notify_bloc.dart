@@ -34,20 +34,22 @@ class NotifyBloc extends Bloc {
   TransactionModel get transaction => _currentTransaction!;
 
   NotifyBloc() {
+    //stream sink para novos pendentes.
     NotifyMockRepository.listenList((p0) {
       if (p0.isNotEmpty) {
         transactionModelStream.sink.add(
             p0.firstWhere((element) => element.requestStatus == "pending"));
       }
-      log(p0.toString());
     });
 
+    //stream sink para notificação
     NotifyMockRepository.listenList((p0) {
       if (p0.isNotEmpty) {
         notificationStream.sink.add(p0.last);
       }
     });
 
+    //stream sink para histórico
     NotifyMockRepository.listenList((p0) {
       if (p0.isNotEmpty) listTransactionModelStream.sink.add(p0);
     });

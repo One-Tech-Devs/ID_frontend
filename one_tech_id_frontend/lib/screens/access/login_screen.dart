@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/screens/landing_screen.dart';
@@ -12,6 +14,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isIOS = false;
+
+  void setPlatform() {
+    Platform.isIOS ? isIOS = true : isIOS = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     bool authenticated = false;
@@ -38,51 +46,84 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: constraints.maxHeight * 0.14,
                   ),
-                  Container(
-                    width: constraints.maxWidth * 0.76,
-                    child: FilledButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                                IdColors.unselectedconColor)),
-                        onPressed: () {
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            useSafeArea: true,
-                            context: context,
-                            builder: (context) {
-                              return BottomSheetLogin(constraints: constraints);
-                            },
-                          );
-                        },
-                        child: const Text(
-                          "Usuário e Senha",
-                          style: TextStyle(fontSize: 14, fontFamily: "Roboto"),
-                        )),
-                  ),
+                  SizedBox(
+                      width: constraints.maxWidth * 0.76,
+                      child: !isIOS
+                          ? FilledButton(
+                              style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      IdColors.unselectedconColor)),
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  useSafeArea: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return BottomSheetLogin(
+                                        constraints: constraints);
+                                  },
+                                );
+                              },
+                              child: const Text(
+                                "Usuário e Senha",
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: "Roboto"),
+                              ))
+                          : CupertinoButton.filled(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  useSafeArea: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return BottomSheetLogin(
+                                        constraints: constraints);
+                                  },
+                                );
+                              },
+                              child: const Text("Usuário e Senha"),
+                            )),
                   const SizedBox(
                     height: 25,
                   ),
-                  Container(
-                    width: constraints.maxWidth * 0.76,
-                    child: FilledButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                                IdColors.unselectedconColor)),
-                        onPressed: () async {
-                          final authenticate = await LocalAuth.authenticate();
+                  SizedBox(
+                      width: constraints.maxWidth * 0.76,
+                      child: !isIOS
+                          ? FilledButton(
+                              style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      IdColors.unselectedconColor)),
+                              onPressed: () async {
+                                final authenticate =
+                                    await LocalAuth.authenticate();
 
-                          setState(() {
-                            authenticated = authenticate;
-                          });
+                                setState(() {
+                                  authenticated = authenticate;
+                                });
 
-                          if (authenticated) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const LandingScreen(),
-                            ));
-                          }
-                        },
-                        child: const Text("Senha do Celular")),
-                  ),
+                                if (authenticated) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const LandingScreen(),
+                                  ));
+                                }
+                              },
+                              child: const Text("Senha do Celular"))
+                          : CupertinoButton.filled(
+                              child: const Text("Senha do iPhone"),
+                              onPressed: () async {
+                                final authenticate =
+                                    await LocalAuth.authenticate();
+
+                                setState(() {
+                                  authenticated = authenticate;
+                                });
+
+                                if (authenticated) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const LandingScreen(),
+                                  ));
+                                }
+                              })),
                   SizedBox(
                     height: constraints.maxHeight * 0.1,
                   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/address_model.dart';
 
-import '../../../../core/data/repositories/sqflite_mock_data/sqflite_address_repository.dart';
+import '../../../../core/data/repositories/mock/sqflite_mock_data/sqflite_address_repository.dart';
 import '../../list_tile/list_tile_data_vault.dart';
 import '../../text_widgets/data_text_form_field.dart';
 
