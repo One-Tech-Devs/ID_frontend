@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_interpolations, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import '../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore_repository.dart';
@@ -20,8 +22,9 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
     return FutureBuilder(
         future: NotifyMockRepository.getTransaction(widget.transactionId),
         builder: (context, snapshot) {
-          if (!snapshot.hasData)
-            return Center(child: LinearProgressIndicator());
+          if (!snapshot.hasData) {
+            return const Center(child: LinearProgressIndicator());
+          }
           List<String> dataRequested = snapshot.data!.requestData.split(', ');
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 55, horizontal: 4),
@@ -70,7 +73,7 @@ class _RequestNotificationCardState extends State<RequestNotificationCard> {
                   Expanded(
                     child: ListView.builder(
                         itemCount: dataRequested.length,
-                        itemBuilder: (context, index) => Container(
+                        itemBuilder: (context, index) => SizedBox(
                               height: 55,
                               child: CheckBoxDataTile(
                                   checkBoxValue: true,

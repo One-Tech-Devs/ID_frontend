@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/user_model.dart';
@@ -116,7 +118,8 @@ class _BasicInsertDataState extends State<BasicInsertData> {
                             BlocProvider.of<UserBloc>(context)
                                 .setUser(widget.userModel);
                           },
-                          icon: Icon(Icons.save, color: iconSelectedColor),
+                          icon:
+                              const Icon(Icons.save, color: iconSelectedColor),
                         )
                       : IconButton(
                           onPressed: () {
@@ -125,7 +128,7 @@ class _BasicInsertDataState extends State<BasicInsertData> {
                               onEdit = !onEdit;
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.edit,
                             color: iconSelectedColor,
                           )),

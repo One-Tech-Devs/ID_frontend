@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc_provider/bloc_provider.dart';
 
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
@@ -56,7 +54,5 @@ class NotifyBloc extends Bloc {
   }
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-  }
+  void dispose() {}
 }

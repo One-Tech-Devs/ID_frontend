@@ -42,6 +42,7 @@ class NotifyMockRepository {
         .listen((event) {
       List<TransactionModel> list = [];
       try {
+        // ignore: avoid_function_literals_in_foreach_calls
         event.docs.forEach((element) {
           var result = TransactionModel.fromJson(element.data(), element.id);
           list.add(result);

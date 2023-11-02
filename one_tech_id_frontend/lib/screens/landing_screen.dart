@@ -46,11 +46,9 @@ class _LandingScreenState extends State<LandingScreen> {
                   )),
             )
           ]),
-      body: PageView(controller: pageViewController, children: [
-        const HomeScreen(),
-        const DataVaultScreen(),
-        const HistoryScreen()
-      ]),
+      body: PageView(
+          controller: pageViewController,
+          children: const [HomeScreen(), DataVaultScreen(), HistoryScreen()]),
       bottomNavigationBar: BottomNavBar(pageViewController: pageViewController),
     );
   }

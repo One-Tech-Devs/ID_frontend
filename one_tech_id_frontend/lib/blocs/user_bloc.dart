@@ -23,7 +23,6 @@ class UserBloc extends Bloc {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     userModelStream.close();
   }
 }
