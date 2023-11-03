@@ -50,6 +50,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
               padding: const EdgeInsets.only(
                   bottom: 15, left: 16, right: 16, top: 40),
               child: PageView(
+                physics: const AlwaysScrollableScrollPhysics(),
                 onPageChanged: (index) {
                   setState(() => isLastPage = index == 2);
                 },

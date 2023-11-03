@@ -1,9 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
+import 'package:one_tech_data_control/screens/create_account/create_account_name.dart';
 import 'package:one_tech_data_control/screens/landing_screen.dart';
 import 'package:one_tech_data_control/shared/widgets/login/bottom_sheet_login.dart';
 import '../../core/services/local_auth_service.dart';
@@ -130,9 +130,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: constraints.maxHeight * 0.1,
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CreateAccountScreenName(),
+                        ));
+                      },
                       child: const Text(
-                        "Não possui uma ID ainda?\n Clique aqui para criar uma.",
+                        textAlign: TextAlign.center,
+                        "Não possui uma ID ainda? Clique aqui para criar uma.",
                         style: TextStyle(color: IdColors.unselectedconColor),
                       ))
                 ],

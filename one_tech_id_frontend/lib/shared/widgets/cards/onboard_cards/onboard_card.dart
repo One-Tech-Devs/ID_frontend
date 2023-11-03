@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/screens/access/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../screens/create_account/create_account_name.dart';
 
 // ignore: must_be_immutable
 class OnBoardCard extends StatelessWidget {
@@ -62,6 +62,9 @@ class OnBoardCard extends StatelessWidget {
                     onPressed: () async {
                       final prefs = await SharedPreferences.getInstance();
                       prefs.setBool('showHome', true);
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => CreateAccountScreenName(),
+                      ));
                     },
                     child: const Text("Crie sua conta aqui.")),
                 const SizedBox(
