@@ -63,7 +63,7 @@ class OnBoardCard extends StatelessWidget {
                       final prefs = await SharedPreferences.getInstance();
                       prefs.setBool('showHome', true);
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => CreateAccountScreenName(),
+                        builder: (context) => const CreateAccountScreenName(),
                       ));
                     },
                     child: const Text("Crie sua conta aqui.")),
