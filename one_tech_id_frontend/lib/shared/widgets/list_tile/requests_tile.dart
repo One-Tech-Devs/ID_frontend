@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
-
-import '../cards/request_details_card.dart';
-import '../cards/request_notification_card.dart';
+import '../cards/request_details_cards/request_details_card.dart';
+import '../cards/request_details_cards/request_notification_card.dart';
 
 class RequestsTile extends StatelessWidget {
   final TransactionModel transactionModel;

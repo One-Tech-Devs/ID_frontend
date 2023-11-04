@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../config/colors_constant/colors_code.dart';
-import '../../../core/data/models/transaction_model.dart';
+import '../../../../config/colors_constant/colors_code.dart';
+import '../../../../core/data/models/transaction_model.dart';
 
 class RequestDetails extends StatelessWidget {
   final TransactionModel transactionModel;
