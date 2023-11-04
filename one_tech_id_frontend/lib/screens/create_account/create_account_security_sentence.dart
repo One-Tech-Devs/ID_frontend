@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/screens/access/login_screen.dart';
-
-import '../../shared/widgets/text_widgets/data_text_form_field.dart';
 import '../../shared/widgets/text_widgets/security_sentence_form_field.dart';
 
 class CreateAccountSecuritySentence extends StatefulWidget {

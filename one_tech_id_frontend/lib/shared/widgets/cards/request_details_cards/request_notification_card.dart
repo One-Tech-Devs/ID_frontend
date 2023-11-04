@@ -1,9 +1,8 @@
 // ignore_for_file: unnecessary_string_interpolations, use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
-import '../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore_repository.dart';
-import '../list_tile/check_box_listtile_notification.dart';
+import '../../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore_repository.dart';
+import '../../list_tile/check_box_listtile_notification.dart';
 
 class RequestNotificationCard extends StatefulWidget {
   final String transactionId;

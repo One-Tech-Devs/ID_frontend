@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/data/models/transaction_model.dart';
-import '../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore_repository.dart';
+import '../../../../core/data/models/transaction_model.dart';
+import '../../../../core/data/repositories/mock/firebase_mock_repo/notify_firestore_repository.dart';
 import 'request_details_by_id_card.dart';
 
 class RequestDetailsCard extends StatelessWidget {

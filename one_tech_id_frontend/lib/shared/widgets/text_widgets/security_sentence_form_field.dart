@@ -17,6 +17,7 @@ class SecuritySentenceField extends StatelessWidget {
           if (value == null || value.trim().isEmpty) {
             return "Insira uma Frase de segurança para terminar o cadastro";
           }
+          return null;
         }),
         decoration: const InputDecoration(
             helperStyle: TextStyle(fontSize: 14, color: IdColors.selectedColor),

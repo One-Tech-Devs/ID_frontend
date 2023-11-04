@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/user_model.dart';
 
-import '../../../core/data/repositories/mock/sqflite_mock_data/sqflite_user_repository.dart';
-import 'insert_list_widget/insert_basic_data.dart';
+import '../../../../core/data/repositories/mock/sqflite_mock_data/sqflite_user_repository.dart';
+import '../insert_list_widget/insert_basic_data.dart';
 
 class DataVaultUserData extends StatefulWidget {
   const DataVaultUserData({super.key});
