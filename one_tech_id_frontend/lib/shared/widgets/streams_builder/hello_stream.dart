@@ -20,7 +20,7 @@ class HelloStreamWidget extends StatelessWidget {
               return const Text(
                 "Seja bem vindo!",
                 style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 26,
                     fontFamily: "Roboto",
                     color: IdColors.unselectedconColor),
               );

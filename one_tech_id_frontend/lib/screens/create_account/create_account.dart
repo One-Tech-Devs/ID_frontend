@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/screens/access/login_screen.dart';
 import 'package:one_tech_data_control/shared/widgets/text_widgets/shared_text_form_field.dart';
-import 'package:one_tech_data_control/shared/widgets/text_widgets/data_text_form_field.dart';
 import '../../core/data/models/user_model.dart';
 import '../../core/data/repositories/mock/sqflite_mock_data/sqflite_user_repository.dart';
 import '../../shared/widgets/text_widgets/password_text_form_field.dart';
@@ -51,14 +50,13 @@ class _CreateAccountScreenNameState extends State<CreateAccountScreenName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Form(
         key: formKey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const MaxGap(85),
             SizedBox(
-                height: 120,
+                height: 85,
                 child: Image.asset(
                   'assets/app/ID_transp.png',
                   fit: BoxFit.cover,
@@ -75,28 +73,31 @@ class _CreateAccountScreenNameState extends State<CreateAccountScreenName> {
                     color: IdColors.unselectedconColor),
               ),
             ),
-            const MaxGap(20),
+            const MaxGap(15),
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 75),
+              padding: EdgeInsets.symmetric(horizontal: 55),
               child: Text(
                 textAlign: TextAlign.left,
                 "Vamos precisar de alguns dados para criar o seu cadastro",
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontFamily: "Roboto",
                     color: IdColors.unselectedconColor),
               ),
             ),
             const MaxGap(35),
-            SizedBox(width: 350, child: SharedField(controller: cpfController)),
+            SizedBox(
+                width: 350,
+                child: SharedField(field: "CPF", controller: cpfController)),
             const MaxGap(16),
             SizedBox(
-                width: 350, child: SharedField(controller: nameController)),
+                width: 350,
+                child: SharedField(field: "Nome", controller: nameController)),
             const MaxGap(16),
             SizedBox(
                 width: 350,
                 child: PasswordField(passwordController: passwordController)),
-            const MaxGap(55),
+            const MaxGap(35),
             FilledButton(
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {

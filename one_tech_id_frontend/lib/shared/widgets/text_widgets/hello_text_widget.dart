@@ -13,7 +13,10 @@ class HelloWidget extends StatelessWidget {
     return Text(
       "Olá, ${userModel.name}",
       style: const TextStyle(
-          fontSize: 24, fontFamily: "Roboto", color: IdColors.selectedColor),
+          fontSize: 26,
+          fontFamily: "Roboto",
+          color: IdColors.selectedColor,
+          fontWeight: FontWeight.w600),
     );
   }
 }

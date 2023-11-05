@@ -152,7 +152,6 @@ class _AddressInsertDataState extends State<AddressInsertData> {
                     : IconButton(
                         onPressed: () {
                           setState(() {
-                            widget.onChange();
                             onEdit = !onEdit;
                           });
                         },

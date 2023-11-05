@@ -28,7 +28,11 @@ class _LandingScreenState extends State<LandingScreen> {
           leading: Padding(
             padding: const EdgeInsets.only(left: 12),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                pageViewController.animateToPage(3,
+                    duration: const Duration(milliseconds: 150),
+                    curve: Curves.bounceIn);
+              },
               icon: const Icon(Icons.notifications,
                   size: 32, color: IdColors.unselectedconColor),
             ),
