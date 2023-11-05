@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:one_tech_data_control/core/data/models/transaction_model.dart';
-import '../../../../constants/api_endpoints.dart';
+import '../../../../../constants/api_endpoints.dart';
 
 class ApiRepository {
   static Future<TransactionModel> getRequest() async {

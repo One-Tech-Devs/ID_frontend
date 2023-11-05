@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
 import 'package:one_tech_data_control/screens/access/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../screens/create_account/create_account_name.dart';
+import '../../../../screens/create_account/create_account.dart';
 
 // ignore: must_be_immutable
 class OnBoardCard extends StatelessWidget {

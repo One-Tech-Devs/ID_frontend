@@ -10,9 +10,11 @@ import '../../text_widgets/data_text_form_field.dart';
 class DocsInsertData extends StatefulWidget {
   final VoidCallback onChange;
   UserModel userModel = UserModel(
+      password: '',
+      securityPhrase: '',
       name: '',
       socialName: '',
-      address: '',
+      addressId: '',
       email: '',
       phone: '',
       cpf: '',
