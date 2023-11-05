@@ -40,7 +40,7 @@ class _BottomSheetLoginState extends State<BottomSheetLogin> {
             SizedBox(
               height: widget.constraints.maxHeight * 0.01,
             ),
-            SharedField(controller: widget._cpfController),
+            SharedField(field: "CPF", controller: widget._cpfController),
             SizedBox(
               height: widget.constraints.maxHeight * 0.02,
             ),

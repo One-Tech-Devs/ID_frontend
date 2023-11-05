@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class SharedField extends StatefulWidget {
   TextEditingController controller = TextEditingController();
-  SharedField({required this.controller, super.key});
+  String field;
+  SharedField({required this.controller, required this.field, super.key});
 
   @override
   State<SharedField> createState() => _SharedFieldState();
@@ -18,13 +19,13 @@ class _SharedFieldState extends State<SharedField> {
           controller: widget.controller,
           validator: (value) {
             if (value == null || value.trim().isEmpty) {
-              return "O campo cpf deve ser preenchido";
+              return "O campo ${widget.field} deve ser preenchido";
             }
             return null;
           },
-          decoration: const InputDecoration(
-              label: Text("CPF"),
-              border: OutlineInputBorder(
+          decoration: InputDecoration(
+              label: Text(widget.field),
+              border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(14)),
                   borderSide: BorderSide()))),
     );
