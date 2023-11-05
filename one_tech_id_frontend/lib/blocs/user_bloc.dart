@@ -12,7 +12,7 @@ class UserBloc extends Bloc {
   UserBloc();
 
   void setUser(UserModel userModel) async {
-    _currentUser = await SQFLiteUserRepository.get(1);
+    _currentUser = await SQFLiteUserRepository.get(userModel.id);
 
     userModelStream.sink.add(_currentUser!);
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/screens/access/login_screen.dart';
 import 'package:one_tech_data_control/screens/home_screen.dart';
-
 import '../../screens/history/history_landing_page.dart';
 
 class Routes {

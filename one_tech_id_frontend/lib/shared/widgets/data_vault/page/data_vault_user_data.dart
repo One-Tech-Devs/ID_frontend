@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/core/data/models/user_model.dart';
-
 import '../../../../core/data/repositories/mock/sqflite_mock_data/sqflite_user_repository.dart';
 import '../insert_list_widget/insert_basic_data.dart';
 
@@ -36,7 +35,9 @@ class _DataVaultUserDataState extends State<DataVaultUserData> {
           if (snapshot.data!.isEmpty) {
             return BasicInsertData(
               userModel: UserModel(
-                address: '',
+                password: '',
+                securityPhrase: '',
+                addressId: '',
                 cpf: '',
                 email: '',
                 name: '',
@@ -54,7 +55,7 @@ class _DataVaultUserDataState extends State<DataVaultUserData> {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) => BasicInsertData(
-              userModel: snapshot.data![0],
+              userModel: snapshot.data![index],
               onChange: () {
                 setState(() {});
               },

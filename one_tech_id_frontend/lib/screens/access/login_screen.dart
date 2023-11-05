@@ -1,11 +1,15 @@
 // ignore_for_file: use_build_context_synchronously
 import 'dart:io';
+import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tech_data_control/config/colors_constant/colors_code.dart';
-import 'package:one_tech_data_control/screens/create_account/create_account_name.dart';
+import 'package:one_tech_data_control/screens/create_account/create_account.dart';
 import 'package:one_tech_data_control/screens/landing_screen.dart';
 import 'package:one_tech_data_control/shared/widgets/login/bottom_sheet_login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../blocs/user_bloc.dart';
+import '../../core/data/repositories/mock/sqflite_mock_data/sqflite_user_repository.dart';
 import '../../core/services/local_auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -113,6 +117,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           : CupertinoButton.filled(
                               child: const Text("Senha do iPhone"),
                               onPressed: () async {
+                                var list = <String>[];
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setStringList("credentials", list);
+
+                                var userAunthenticate =
+                                    await SQFLiteUserRepository.getLogin(
+                                        list[0], list[1]);
                                 final authenticate =
                                     await LocalAuth.authenticate();
 
@@ -121,6 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 });
 
                                 if (authenticated) {
+                                  BlocProvider.of<UserBloc>(context)
+                                      .setUser(userAunthenticate);
                                   Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => const LandingScreen(),
                                   ));

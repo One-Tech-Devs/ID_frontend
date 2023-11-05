@@ -36,7 +36,9 @@ class _DataVaultDocsDataState extends State<DataVaultDocsData> {
         if (snapshot.data!.isEmpty) {
           return DocsInsertData(
             userModel: UserModel(
-              address: '',
+              password: '',
+              securityPhrase: '',
+              addressId: '',
               cpf: '',
               email: '',
               name: '',
